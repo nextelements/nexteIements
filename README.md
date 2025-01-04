@@ -6,7 +6,7 @@ Diese Anleitung zeigt dir die vollständigen Schritte, wie du Git installierst, 
 
 Git ist ein Versionskontrollsystem, das für die Arbeit mit Repositories auf deinem Server erforderlich ist. Die Installation von Git auf deinem Server ist der erste Schritt. Verwende dazu die folgenden Befehle:
 
-```js
+```bash
 sudo apt update
 sudo apt install git
 ```
@@ -17,7 +17,7 @@ Der erste Befehl aktualisiert die Paketliste deines Servers, um sicherzustellen,
 
 Um sicherzustellen, dass Git erfolgreich installiert wurde, kannst du den folgenden Befehl ausführen:
 
-```js
+```bash
 git --version
 ```
 
@@ -29,14 +29,14 @@ Nachdem Git erfolgreich installiert ist, kannst du ein neues Projekt auf deinem 
 
 Zuerst erstellst du ein neues Verzeichnis für dein Projekt und wechselst in dieses Verzeichnis:
 
-```js
+```bash
 mkdir myapp
 cd myapp
 ```
 
 Mit diesen Befehlen erstellst du das Verzeichnis `myapp` und wechselst in das Verzeichnis. Jetzt kannst du das Repository von GitHub klonen, indem du den folgenden Befehl verwendest:
 
-```js
+```bash
 git clone https://github.com/nextelements/nexteIements.git
 ```
 
@@ -54,7 +54,7 @@ Nun, da du dein Projektverzeichnis hast, kannst du ein eigenes Git-Repository in
 
 Bevor du mit Git arbeitest, solltest du deinen GitHub-Benutzernamen und deine E-Mail-Adresse konfigurieren, damit deine Commits korrekt deinem GitHub-Account zugeordnet werden. Verwende die folgenden Befehle:
 
-```js
+```bash
 git config --global user.name "username" // Github-Account-Benutzername
 git config --global user.email "username@example.com" // Github-Account-E-Mail
 ```
@@ -65,13 +65,13 @@ Ersetze `"username"` durch deinen GitHub-Benutzernamen und `"username@example.co
 
 Nun kannst du ein Git-Repository in deinem Projektverzeichnis initialisieren. Führe den folgenden Befehl aus:
 
-```js
+```bash
 git init
 ```
 
 Dieser Befehl erstellt ein neues Git-Repository in deinem Projektverzeichnis. Als nächstes fügst du das entfernte GitHub-Repository als "origin" hinzu:
 
-```js
+```bash
 git remote add origin https://github.com/username/repository.git
 ```
 
@@ -89,17 +89,17 @@ Erstelle einen neuen Token mit den notwendigen Berechtigungen und speichere ihn 
 
 Um die Authentifizierung beim Pushen zu automatisieren, kannst du den folgenden Befehl verwenden, um die URL des Remote-Repositories mit deinem Benutzername und Token zu setzen:
 
-```js
+```bash
 git remote set-url origin https://username:token@github.com/username/repository.git
 ```
 
-**Wichtig:** Der Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` gilt als unsicher, weil der Token in der URL sichtbar ist. Es wird empfohlen, stattdessen die Authentifizierung über SSH oder ein anderes sicheres Verfahren zu verwenden.
+> **Wichtig:** Der Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` gilt als unsicher, weil der Token in der URL sichtbar ist. Es wird empfohlen, stattdessen die Authentifizierung über SSH oder ein anderes sicheres Verfahren zu verwenden.
 
 ### Erstellen eines Push-Commits und Pushen der Änderungen
 
 Wechsel in das Root-Verzeichnis deines Projektes und führe den Befehl aus, um die Änderungen zu pushen:
 
-```js
+```bash
 npm run push
 ```
 
@@ -109,7 +109,7 @@ Dieser Befehl wird dazu verwendet, Änderungen von deinem lokalen Repository in 
 
 Bevor du mit dem Entwickeln beginnst, musst du sicherstellen, dass alle Abhängigkeiten des Projekts installiert sind. Falls der `node_modules`-Ordner noch nicht vorhanden ist, kannst du dies mit dem folgenden Befehl tun:
 
-```js
+```bash
 npm install
 ```
 
@@ -117,7 +117,7 @@ Dieser Befehl installiert alle Abhängigkeiten, die im `package.json`-Dateiforma
 
 Falls dein Projekt ein Monorepo ist und mehrere Workspaces verwendet, solltest du auch den folgenden Befehl ausführen, um sicherzustellen, dass alle Abhängigkeiten korrekt installiert werden:
 
-```js
+```bash
 npm install --workspaces
 ```
 
