@@ -77,7 +77,7 @@ const resolveConfig = (
         const parsedColor = cache[layoutValue] || Color(layoutValue).hsl().array()
         cache[layoutValue] = parsedColor
 
-        const color = layoutName.replace('.', '-')
+        const color = layoutName.replace('.', '-').replace('-DEFAULT', '')
         const colorVariable = `--${prefix}-${color}`
         const colorOpacityVariable = `${colorVariable}-o`
         const [ h, s, l, alpha ] = parsedColor
