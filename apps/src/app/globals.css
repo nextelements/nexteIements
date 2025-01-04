@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: hsl(var(--myapp-foreground));
+  background: hsl(var(--myapp-background));
+  font-family: Arial, Helvetica, sans-serif;
+}
