@@ -20,7 +20,7 @@ const resolveConfig = (
     colors: {},
     utilities: {},
   }
-
+  console.log(themes)
   for (const [ themeName, { colors, layout, extend }] of Object.entries(themes)) {
     const scheme = isDefaultTheme(themeName) ? themeName : extend
     let cssSelector = `.${themeName}:root, [data-theme="${themeName}"]:root`
@@ -130,6 +130,7 @@ export const NextElements = (config) => {
         ...defaultExtendColors,
         ...colors,
       },
+      ...themes[themeName]
     }
   }
 

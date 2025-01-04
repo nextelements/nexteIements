@@ -11,7 +11,7 @@ export default function() {
       <Button>Button from a extern component</Button>
       <MyButton className="text-sm">Extended Button from a extern component</MyButton>
       <Button className="bg-green-400">Button from a extern component</Button>
-      <ThemeToggle />
+      <ThemeToggle /><br />
     </div>
   )
 }

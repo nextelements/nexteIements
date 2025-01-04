@@ -15,11 +15,11 @@ export default {
     NextElements({
       themes: {
         customTheme: {
+          extend: 'dark',
           layout: {
             background: '#555555',
             foreground: '#eeeeee'
           },
-          extend: 'dark',
         }
       }
     }) 
