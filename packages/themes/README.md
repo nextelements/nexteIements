@@ -63,7 +63,7 @@ export default {
         }  
       },
       layout: {
-        background: '#ffffff',
+        background: '#ffffff', // bg-background
       },
       extend: 'light', // optional: Erweitert ein bestehendes Theme
     },
@@ -199,7 +199,7 @@ export default Layout
 Um das benutzerdefinierte Thema in deiner Anwendung zu nutzen, kannst du es mit dem `useTheme`-Hook innerhalb deiner Komponenten abrufen und verwenden:
 
 ```js
-import { useTheme } from '@nextelements/themes'  // Importiere den useTheme-Hook
+import { useTheme } from '@nextelements/themes';  // Importiere den useTheme-Hook
 
 function MyComponent() {
   const { themes, theme, setTheme } = useTheme();
@@ -263,8 +263,8 @@ Die Funktion gibt eine neue Komponente zurück, die die erweiterten Varianten en
 ### Beispiel:
 
 ```js
-import { Button } from 'next-elements';
-import { extendVariant } from 'next-elements/utils';
+import { Button } from 'nextelements';
+import { extendVariant } from 'nextelements/utils';
 
 // Erweiterte Varianten für die Button-Komponente
 const extendedButton = extendVariant(Button, {

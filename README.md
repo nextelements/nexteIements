@@ -133,7 +133,20 @@ Dieser Befehl startet den Entwicklungsserver von Next.js, und deine Anwendung wi
 
 ### Überprüfen des Serverstatus
 
-Wenn der Server erfolgreich gestartet wurde, solltest du eine Ausgabe sehen, die anzeigt, dass der Server auf dem angegebenen Port (standardmäßig `3000`) läuft. Wenn du den Server in einem anderen Port starten möchtest, kannst du die Konfiguration in der Datei `next.config.js` anpassen.
+Wenn der Server erfolgreich gestartet wurde, solltest du eine Ausgabe sehen, die anzeigt, dass der Server auf dem angegebenen Port (standardmäßig `3000`) läuft. Wenn du den Server in einem anderen Port starten möchtest, kannst du die Konfiguration in der Datei `next.config.mjs` anpassen.
+
+```
+// next.config.mjs
+export default nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: [ 
+    '@nextelements/components',
+    '@nextelements/icons',
+    '@nextelements/themes',
+    '@nextelements/utilities',
+  ],
+}
+```
 
 ## Zusammenfassung
 
