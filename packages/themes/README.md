@@ -125,6 +125,112 @@ Die erzeugten CSS-Variablen ermöglichen es dir, dynamisch auf Farben und Layout
 
 Für weitere Informationen, siehe die [offizielle Dokumentation von Tailwind CSS](https://tailwindcss.com/docs).
 
+---
+
+# ThemeProvider Integration mit benutzerdefiniertem Thema in Next.js
+
+Diese Anleitung zeigt, wie du den `ThemeProvider`-Kontext in deinem Next.js-Projekt sowohl im **Pages Router** als auch im **App Router** einbindest und dabei ein **benutzerdefiniertes Thema** zusammen mit den Standardthemen verwendest.
+
+## 1. Verwendung im **Pages Router**
+
+Im **Pages Router** von Next.js definierst du den `ThemeProvider` üblicherweise auf der höchsten Ebene der Anwendung, z. B. in der `pages/_app.js`-Datei.
+
+### Schritt 1: `ThemeProvider` in `pages/_app.js` einbinden
+
+Erstelle oder bearbeite die Datei `pages/_app.js`, um den `ThemeProvider` um die gesamte Anwendung zu wickeln und ein benutzerdefiniertes Thema zu den Standardthemen hinzuzufügen:
+
+```js
+import { ThemeProvider } from '@nextelements/themes';  // Importiere den ThemeProvider
+import '../styles/globals.css';
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ThemeProvider
+      themes={['light', 'dark', 'custom']}  // Standard- und benutzerdefiniertes Thema hinzufügen
+      defaultLightTheme="light"
+      defaultDarkTheme="dark"
+      initialTheme="system"
+    >
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
+}
+
+export default MyApp
+```
+
+### Erklärung:
+- In der `themes`-Prop werden die Standardthemen `light` und `dark` sowie das benutzerdefinierte Thema `custom` als Array übergeben.
+- Das benutzerdefinierte Thema `custom` kann nun in der gesamten Anwendung verwendet werden.
+
+## 2. Verwendung im **App Router**
+
+Im **App Router** von Next.js wird der Kontext ähnlich wie im Pages Router eingebunden, aber innerhalb eines Layouts. Der App Router nutzt das Layout-System, das in der `app`-Ordnerstruktur basiert.
+
+### Schritt 1: `ThemeProvider` in `app/layout.js` einbinden
+
+Erstelle oder bearbeite die Datei `app/layout.js`, um den `ThemeProvider` auf der höchsten Ebene innerhalb des Layouts zu verwenden und ein benutzerdefiniertes Thema hinzuzufügen:
+
+```js
+import { ThemeProvider } from '@nextelements/themes';  // Importiere den ThemeProvider
+import '../styles/globals.css'
+
+function Layout({ children }) {
+  return (
+    <ThemeProvider
+      themes={['light', 'dark', 'custom']}  // Standard- und benutzerdefiniertes Thema hinzufügen
+      defaultLightTheme="light"
+      defaultDarkTheme="dark"
+      initialTheme="system"
+    >
+      {children}
+    </ThemeProvider>
+  )
+}
+
+export default Layout
+```
+
+### Erklärung:
+- Der `ThemeProvider` wird hier in das Layout eingebunden, sodass das benutzerdefinierte Thema `custom` zusammen mit den Standardthemen `light` und `dark` für die gesamte Anwendung verfügbar ist.
+
+## 3. Verwendung des benutzerdefinierten Themas
+
+Um das benutzerdefinierte Thema in deiner Anwendung zu nutzen, kannst du es mit dem `useTheme`-Hook innerhalb deiner Komponenten abrufen und verwenden:
+
+```js
+import { useTheme } from '@nextelements/themes'  // Importiere den useTheme-Hook
+
+function MyComponent() {
+  const { themes, theme, setTheme } = useTheme();
+
+  function onChange(e) => {
+    setTheme(e.target.value)
+  }
+
+  return (
+    <div>
+      Current theme: {theme}<br />
+      Choose another theme:
+      <select value={theme} onChange={onChange}>
+        {themes.map((scheme, i) => (
+          <option 
+            key={i} 
+            value={scheme}
+          >{scheme}</option>
+        ))}
+      </select>
+    </div>
+  )
+}
+```
+
+### Erklärung:
+- Der `useTheme`-Hook wird verwendet, um auf das aktuelle Thema zuzugreifen und das Thema nach Bedarf zu ändern.
+- Du kannst das benutzerdefinierte Thema `custom` verwenden, indem du `setTheme('custom')` aufrufst.
+
+---
+
 # `extendVariant` - Erweiterung von Tailwind-Varianten für Komponenten
 
 Die Funktion `extendVariant` ermöglicht es dir, die Varianten einer bestehenden React-Komponente zu erweitern oder zu überschreiben, basierend auf einem bestimmten `displayName`-Präfix. Diese Funktion nutzt die Bibliotheken `tailwind-variants` und `tailwind-merge`, um Varianten zu kombinieren und Klassen zu vereinen.
