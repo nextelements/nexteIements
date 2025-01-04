@@ -12,7 +12,7 @@ const defaultLightThemeColors = {
     default: {
       ...common.neutral,
       foreground: common.neutral[500],
-      DEFAULT: common.neutral[100],
+      DEFAULT: common.black,
     },
     primary: {
       ...common.sky,
@@ -53,7 +53,7 @@ const defaultDarkThemeColors = {
     default: {
       ...swap(common.neutral),
       foreground: common.neutral[500],
-      DEFAULT: common.neutral[500],
+      DEFAULT: common.white,
     },
     primary: {
       ...swap(common.sky),
