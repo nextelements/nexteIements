@@ -17,13 +17,13 @@ export function extendVariant(Component, variantsToExtend, mergeClasses = true, 
 
   // Gibt eine Funktion zurück, die eine Komponente mit erweiterten Varianten erzeugt
   const extendedComponent = (props) => {
-    // Erhalte die Variantenklasse und wende sie auf das Element an
+    // Wende die Varianten an, die durch den Funktionsaufruf (`button({ variant, size, color })`) gesetzt werden
     const variantClasses = tv(extendedVariants)(props);
 
     // Wenn twMerge aktiviert ist, kombinieren wir die Klassen
     const mergedClasses = mergeClasses ? twMerge(props.className, variantClasses) : variantClasses;
 
-    // Gibt das JSX-Element mit der neuen className zurück
+    // Übergib die mergeClass zu den props als `className`
     return <Component {...props} className={mergedClasses} />;
   };
 

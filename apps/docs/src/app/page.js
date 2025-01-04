@@ -9,7 +9,8 @@ export default function() {
   return (
     <div>
       <Button>Button from a extern component</Button>
-      <MyButton>Extended Button from a extern component</MyButton>
+      <MyButton className="text-sm">Extended Button from a extern component</MyButton>
+      <Button className="bg-green-400">Button from a extern component</Button>
       <ThemeToggle />
     </div>
   )
