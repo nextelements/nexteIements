@@ -50,4 +50,4 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "You can now type ${GREEN}${BOLD}${UNDERLINE}npm run dev${RESET} to run the dev server."
+echo "You can now type ${GREEN}${BOLD}npm run dev${RESET} to run the dev server."

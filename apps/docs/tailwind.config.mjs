@@ -5,17 +5,11 @@ import { NextElements } from '@nextelements/themes/plugin'
 export default {
   darkMode: 'class',
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    '../../packages/**/*.{jsx,js,ts,tsx,html}',
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
+    extend: {},
   },
   plugins: [ NextElements() ],
 };
