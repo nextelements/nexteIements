@@ -141,6 +141,7 @@ export default nextConfig = {
   reactStrictMode: true,
   transpilePackages: [ 
     '@nextelements/components',
+    '@nextelements/hooks',
     '@nextelements/icons',
     '@nextelements/themes',
     '@nextelements/utilities',
