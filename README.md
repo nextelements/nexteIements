@@ -30,13 +30,13 @@ git init
 git remote add origin https://github.com/username/repository.git
 ```
 
-Führe zusätzlich den Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` aus, um automatisch authentifiziert zu werden.
+Führe zusätzlich den Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` aus, um automatisch beim push authentifiziert zu werden.
 Wechsel anschließend in das Rootverzeichniss deines erstellen Projektes und führe den Befehl `npm run push` aus, um die Dateien in dein Repository zu klonen.
 
-Der Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` gilt als extrem unsicher und sollte nicht verwendet werden.
+Der Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` gilt als extrem unsicher und sollte daher nicht verwendet werden.
 
 ## Installiere dependencies
-- Führe `npm install` im Rootverzeichniss aus.
+- Führe wenn notwendig noch `npm install`, optional  `npm install --workspaces` im Rootverzeichniss aus, wenn noch kein node_modules/-Ordner im Rootverzeichniss existiert.
 
 ## Dev-Server starten
 - Starte den Nextjs-Entwicklungsserver mit `npm run dev`
