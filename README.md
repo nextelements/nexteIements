@@ -23,13 +23,17 @@ git config --global user.email "username@example.com" // github account email
 - [Entwickler-Token erstellen](https://github.com/settings/tokens/new)
 - [Ein neues Repository erstellen](https://github.com/new)
 
+Der Entwickler-Token wird bei der Authentifizierung als Passwort verwendet.
+
 ```
 git init
 git remote add origin https://github.com/username/repository.git
-git remote set-url origin https://username:token@github.com/username/repository.git
 ```
 
-Gehe in das Rootverzeichniss deines erstellen Projektes und führe den befehl `npm run push` aus, um die Dateien in dein Repository zu klonen.
+Führe zusätzlich den Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` aus, um automatisch authentifiziert zu werden.
+Wechsel anschließend in das Rootverzeichniss deines erstellen Projektes und führe den Befehl `npm run push` aus, um die Dateien in dein Repository zu klonen.
+
+Der Befehl `git remote set-url origin https://username:token@github.com/username/repository.git` gilt als extrem unsicher und sollte nicht verwendet werden.
 
 ## Installiere dependencies
 - Führe `npm install` im Rootverzeichniss aus.
