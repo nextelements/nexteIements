@@ -125,7 +125,7 @@ npm install --workspaces
 
 Nun bist du bereit, die Anwendung lokal auszuführen. Um den Next.js-Entwicklungsserver zu starten, verwende den folgenden Befehl:
 
-```js
+```bash
 npm run dev
 ```
 
@@ -133,9 +133,9 @@ Dieser Befehl startet den Entwicklungsserver von Next.js, und deine Anwendung wi
 
 ### Überprüfen des Serverstatus
 
-Wenn der Server erfolgreich gestartet wurde, solltest du eine Ausgabe sehen, die anzeigt, dass der Server auf dem angegebenen Port (standardmäßig `3000`) läuft. Wenn du den Server in einem anderen Port starten möchtest, kannst du die Konfiguration in der Datei `next.config.mjs` anpassen.
+Wenn der Server erfolgreich gestartet wurde, solltest du eine Ausgabe sehen, die anzeigt, dass der Server auf dem angegebenen Port (standardmäßig `3000`) läuft. Du kannst die Konfiguration in der Datei `next.config.mjs` anpassen.
 
-```
+```js
 // next.config.mjs
 export default nextConfig = {
   reactStrictMode: true,
