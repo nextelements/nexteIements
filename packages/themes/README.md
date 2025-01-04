@@ -263,8 +263,8 @@ Die Funktion gibt eine neue Komponente zurück, die die erweiterten Varianten en
 ### Beispiel:
 
 ```js
-import { Button } from 'nextelements';
-import { extendVariant } from 'nextelements/utils';
+import { Button } from '@nextelements/compontents';
+import { extendVariant } from '@nextelements/themes';
 
 // Erweiterte Varianten für die Button-Komponente
 const extendedButton = extendVariant(Button, {

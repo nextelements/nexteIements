@@ -11,5 +11,17 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [ NextElements() ],
+  plugins: [ 
+    NextElements({
+      themes: {
+        customTheme: {
+          layout: {
+            background: '#555555',
+            foreground: '#eeeeee'
+          },
+          extend: 'dark',
+        }
+      }
+    }) 
+  ],
 };
