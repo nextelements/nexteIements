@@ -19,9 +19,9 @@ git config --global user.name "username" // github account user
 git config --global user.email "username@example.com" // github account email
 ```
 # Initialisiere eigenes Repository
-- [url=https://github.com/login]Auf Github anmelden[/url]
-- [url=https://github.com/settings/tokens/new]Entwickler-Token (Key) erstellen[/url]
-- [url=https://github.com/new]Erstelle ein neues Repository[/url]
+- [https://github.com/login](Auf Github anmelden)
+- [https://github.com/settings/tokens/new](Entwickler-Token (Key) erstellen)
+- [https://github.com/new](Erstelle ein neues Repository)
 
 ```
 git init
