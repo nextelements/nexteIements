@@ -1,5 +1,3 @@
-# Theming
-
 # Integration von `NextElements` - Tailwind CSS Plugin zur Erweiterung von Farb- und Layout-Themen
 
 Das `NextElements` Plugin ermöglicht es dir, benutzerdefinierte Themes für Tailwind CSS zu integrieren und zu erweitern. Es arbeitet mit Farb- und Layout-Variablen und fügt ein neues Utility für das Farb- und Layout-Management hinzu, das du in deinem Tailwind CSS Setup verwenden kannst.
