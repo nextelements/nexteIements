@@ -53,32 +53,32 @@ const defaultDarkThemeColors = {
     default: {
       ...swap(common.neutral),
       foreground: common.neutral[500],
-      DEFAULT: common.neutral[100],
+      DEFAULT: common.neutral[500],
     },
     primary: {
       ...swap(common.sky),
       foreground: common.sky[500],
-      DEFAULT: common.sky[100],
+      DEFAULT: common.sky[500],
     },
     secondary: {
       ...swap(common.purple),
       foreground: common.purple[500],
-      DEFAULT: common.purple[100],
+      DEFAULT: common.purple[500],
     },
     success: {
       ...swap(common.green),
       foreground: common.green[500],
-      DEFAULT: common.green[100],
+      DEFAULT: common.green[500],
     },
     warning: {
       ...swap(common.orange),
       foreground: common.orange[500],
-      DEFAULT: common.orange[100],
+      DEFAULT: common.orange[500],
     },
     danger: {
       ...swap(common.red),
       foreground: common.red[500],
-      DEFAULT: common.red[100],
+      DEFAULT: common.red[500],
     },
   }
 }

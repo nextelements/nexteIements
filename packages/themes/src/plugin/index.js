@@ -20,7 +20,7 @@ const resolveConfig = (
     colors: {},
     utilities: {},
   }
-  console.log(themes)
+
   for (const [ themeName, { colors, layout, extend }] of Object.entries(themes)) {
     const scheme = isDefaultTheme(themeName) ? themeName : extend
     let cssSelector = `.${themeName}:root, [data-theme="${themeName}"]:root`
@@ -44,7 +44,7 @@ const resolveConfig = (
         const parsedColor = cache[colorValue] || Color(colorValue).hsl().array()
         cache[colorValue] = parsedColor
 
-        const color = colorName.replace('.', '-')
+        const color = colorName.replace('.', '-').replace('-DEFAULT', '')
         const colorVariable = `--${prefix}-${color}`
         const colorOpacityVariable = `${colorVariable}-o`
         const [ h, s, l, alpha ] = parsedColor
@@ -118,8 +118,8 @@ export const NextElements = (config) => {
       return false
     }
 
-    const defaultExtendColors = defaultThemes[extend]?.colors || defaultExtendTheme[defaultExtendTheme]?.colors || {}
-    const defaultExtendLayouts = defaultThemes[extend]?.layout ||  defaultExtendTheme[defaultExtendTheme]?.layout || {}
+    const defaultExtendColors = defaultThemes[extend]?.colors || defaultThemes[defaultExtendTheme]?.colors || {}
+    const defaultExtendLayouts = defaultThemes[extend]?.layout ||  defaultThemes[defaultExtendTheme]?.layout || {}
 
     themes[themeName] = {
       layout: {

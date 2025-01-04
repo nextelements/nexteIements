@@ -1,4 +1,4 @@
-import { Button } from '@nextelements/components'
+import { Button, Spinner } from '@nextelements/components'
 import { ThemeToggle, extendVariant } from '@nextelements/themes'
 
 const MyButton = extendVariant(Button, {
@@ -8,6 +8,7 @@ const MyButton = extendVariant(Button, {
 export default function() {
   return (
     <div>
+      <Spinner />
       <Button>Button from a extern component</Button>
       <MyButton className="text-sm">Extended Button from a extern component</MyButton>
       <Button className="bg-green-400">Button from a extern component</Button>
