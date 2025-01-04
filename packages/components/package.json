@@ -1,0 +1,9 @@
+{
+  "name": "@nextelements/components",
+  "version": "0.0.0",
+  "main": "index.js",
+  "private": false,
+  "devDependencies": {
+    "@nextelements/themes": "*"
+  }
+}

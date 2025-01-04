@@ -1,0 +1,23 @@
+{
+  "name": "@nextelements/themes",
+  "version": "0.0.0",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "require": "./src/index.js",
+      "import": "./src/index.js"
+    },
+    "./plugin": {
+      "require": "./src/plugin/index.js",
+      "import": "./src/plugin/index.js"
+    }
+  },
+  "private": false,
+  "dependencies": {
+    "color": "^4.2.3",
+    "motion": "^11.15.0",
+    "prop-types": "^15.8.1",
+    "tailwind-merge": "^2.6.0",
+    "tailwind-variants": "^0.3.0"
+  }
+}

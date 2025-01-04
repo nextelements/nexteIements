@@ -1,0 +1,53 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+*.node
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Build output
+/dist
+/build
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Next.js
+.next/
+out/
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+*.swp
+*.swo
+
+# JetBrains IDEs (IntelliJ, WebStorm, etc.)
+.idea/
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# System files
+Thumbs.db
+Desktop.ini
+
+# Other
+*.tgz
+*.zip
