@@ -7,28 +7,36 @@ import { motion } from 'framer-motion'
 export const Spinner = ({ 
   color = 'default', 
   strokeWidth = 12,
-  size = 24, 
+  strokeColor = 'default',
+  size = 'extralarge', 
   className
 }) => {
 
-  const classes = classNames(spinner({ color }), className)
-
+  const classes = classNames(spinner({ color, size }), className)
+  const innerCircleColor = spinner({ strokeColor })
+  
   return (
     <motion.div>
       <motion.svg
         className={classes}
-        width={`${size}px`}
-        height={`${size}px`}
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
         initial={{ rotate: 0 }}
         animate={{ rotate: 360 }}
         transition={{
           repeat: Infinity,
-          duration: .8,
+          duration: .6,
           ease: 'linear', // Verwenden von 'linear' statt 'ease-in-out'
         }}
       >
+          <circle
+            fill="none"
+            strokeWidth={strokeWidth}
+            className={innerCircleColor}
+            cx="50"
+            cy="50"
+            r="40"
+          />
         <motion.circle
           fill="none"
           strokeWidth={strokeWidth}
@@ -40,13 +48,17 @@ export const Spinner = ({
             strokeDasharray: 187, 
             strokeDashoffset: 187 }}
           animate={{
-            strokeDashoffset: [ 187, 40, 187 ],
+            strokeDashoffset: [ 
+              187, 
+              10, 
+              187
+            ],
             stroke: [ 'currentColor' ],
           }}
           transition={{
             repeat: Infinity,
-            duration: 2.9,
-            ease: 'easeInOut', // Diese Easing-Notation wird hier unterstützt
+            duration: 3.2,
+            ease: 'easeInOut',
           }}
         />
       </motion.svg>

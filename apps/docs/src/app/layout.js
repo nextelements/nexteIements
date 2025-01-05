@@ -1,4 +1,5 @@
-import './globals.css'
+import './css/globals.css'
+import './css/docs.css'
 
 import { ThemeProvider } from '@nextelements/themes'
 import { classNames } from '@nextelements/utilities'
@@ -14,12 +15,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { Layout } from '../components/Layout'
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
         <body className={classNames(geistSans.variable, geistMono.variable)}>
           <ThemeProvider themes={[ 'light', 'dark', 'customTheme' ]}>
-            { children }
+            <Layout>{ children }</Layout>
           </ThemeProvider>
         </body>
     </html>

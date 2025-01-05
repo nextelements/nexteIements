@@ -6,6 +6,8 @@ const MyButton = extendVariant(Button, {
 });
 
 export default function() {
+  return 'Content'
+
   return (
     <div>
       <Spinner />
