@@ -9,6 +9,7 @@ RESET='\033[0m'
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
 
+git config pull.rebase false
 git pull origin master
 
 commit_message=${1:-"Initial Commit"}
