@@ -10,9 +10,20 @@ export function useRipple() {
 
     if (!document.getElementById(id)) {
       const style = document.createElement('style')
-      
+  
       style.id = id
-      style.textContent = `@keyframes ripple-animation {from {transform: scale(0);opacity: 1;}to {transform: scale(4);opacity: 0;}}`
+      style.textContent = `
+        @keyframes 
+        ripple-animation {
+          from {
+            transform: scale(0);
+            opacity: 1;
+          } to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+      `
 
       document.head.appendChild(style)
     }

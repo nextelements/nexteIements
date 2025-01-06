@@ -12,7 +12,7 @@ import { twMerge } from 'tailwind-merge'
  * @returns {string} Eine zusammengeführte Zeichenkette von CSS-Klassennamen.
  */
 
-const cx = (...args) => {
+const classNames = (...args) => {
   return args
     .map((arg) => {
       if (typeof arg === 'string') {
@@ -20,7 +20,7 @@ const cx = (...args) => {
       }
 
       if (Array.isArray(arg)) {
-        return cx(...arg);
+        return classNames(...arg);
       }
 
       if (typeof arg === 'object') {
@@ -35,7 +35,7 @@ const cx = (...args) => {
 };
 
 /**
- * Kombiniert mehrere CSS-Klassennamen, wobei alle Eingaben durch die cx-Funktion verarbeitet
+ * Kombiniert mehrere CSS-Klassennamen, wobei alle Eingaben durch die classNames-Funktion verarbeitet
  * und mit twMerge kombiniert werden, um doppelte oder überschüssige TailwindCSS-Klassen zu entfernen.
  *
  * @param {...(string|Array|Object)} args - Eine Liste von Eingabewerten, die kombiniert werden sollen.
@@ -45,8 +45,8 @@ const cx = (...args) => {
  * @returns {string} Eine zusammengeführte und bereinigte Zeichenkette von CSS-Klassennamen, bei der doppelte Klassen entfernt wurden.
  */
 
-const classNames = (...args) => {
-  return twMerge(cx(...args))
+const cx = (...args) => {
+  return twMerge(classNames(...args))
 };
 
-export { classNames }
+export { cx }

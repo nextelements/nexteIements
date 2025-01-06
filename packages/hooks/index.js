@@ -1,5 +1,3 @@
-'use client'
-
 export { useClickOutside } from './src/useClickOutside'
 export { useDarkmode } from './src/useDarkmode'
 export { useDebounce } from './src/useDebounce'

@@ -4,6 +4,25 @@
   box-sizing: border-box;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--myapp-divider) / .05);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--myapp-divider) / .1);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 body {
   color: hsl(var(--myapp-foreground));
   background: hsl(var(--myapp-background));
@@ -46,25 +65,59 @@ body {
 }
 
 .menu {
-  position: relative;
-  height: calc(100vh - 90px);
-}
+    position: relative;
+  }
+  .menu .shadow-top {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100px; width: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.15870098039215685) 100%);
+    z-index: 1;
+  }
+  .menu .shadow-bottom {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 100px; width: 100%;
+    background: linear-gradient(0, rgba(0,0,0,1) 10%, rgba(0,0,0,0.15870098039215685) 100%);
+    z-index: 1;
+  }
+  .menu .scroll {
+    height: calc(100vh - 90px);
+    overflow-y: scroll;
+  }
 
-.menu:before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  height: 100px; width: 100%;
-  background: linear-gradient(180deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.15870098039215685) 100%);
-}
-
-.menu:after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  height: 250px; width: 100%;
-  background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.15870098039215685) 100%);
-}
+  .menu .scroll .item {
+      position: relative;
+      display: block;
+    }
+    .menu .scroll .item .title {
+      font-weight: 500;
+      color: #f0f0f0;
+    }
+    .menu .scroll .item .links {
+        margin: 5px 0 5px 5px;
+      }
+      .menu .scroll .item .links li {
+          list-style: none;
+        }
+        .menu .scroll .item .links li a {
+          text-indent: 5px;
+          transition: .2s;
+          border-left: 1px solid hsl(var(--myapp-divider) / 0.15);
+          padding: .25em .75em;
+          display: block;
+          @apply text-neutral-500;
+        }
+        .menu .scroll .item .links li:hover a {
+          border-color: hsl(var(--myapp-white) / 100%);
+          @apply text-neutral-300;
+        }
+        .menu .scroll .item .links li a.active {
+          font-weight: 500;
+          @apply text-neutral-300;
+        }
 
 .sidebar {
   position: sticky;

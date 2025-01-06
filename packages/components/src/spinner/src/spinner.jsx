@@ -1,7 +1,7 @@
 'use client'
 
 import { spinner } from '@nextelements/themes'
-import { classNames } from '@nextelements/utilities'
+import { cx } from '@nextelements/utilities'
 import { motion } from 'framer-motion'
 
 export const Spinner = ({ 
@@ -12,7 +12,7 @@ export const Spinner = ({
   className
 }) => {
 
-  const classes = classNames(spinner({ color, size }), className)
+  const classes = cx(spinner({ color, size }), className)
   const innerCircleColor = spinner({ strokeColor })
   
   return (

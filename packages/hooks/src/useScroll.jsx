@@ -1,26 +1,40 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react';
 
-export function useScroll() {
-  const [ scrollPosition, setScrollPosition ] = useState(0)
+export function useScroll(ref) {
+  const [scrollTop, setScrollTop] = useState(0);
+  const [isAtTop, setIsAtTop] = useState(true);
+  const [isAtBottom, setIsAtBottom] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY)
-    }
+    const element = ref.current;
 
-    window.addEventListener('scroll', handleScroll)
+    if (!element) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = element;
+
+      setScrollTop(scrollTop);
+      setIsAtTop(scrollTop === 0);
+      setIsAtBottom(scrollTop + clientHeight >= scrollHeight);
+    };
+
+    element.addEventListener('scroll', handleScroll);
+
+    handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      element.removeEventListener('scroll', handleScroll);
+    };
+  }, [ref]);
 
-  return scrollPosition
+  return { scrollTop, isAtTop, isAtBottom };
 }
 
+
+
 /*
-  const scrollY = useScroll()
-  console.log(scrollY) // Gibt die aktuelle Scrollposition zurück
+  const { scrollTop, isAtTop, isAtBottom } = useScroll()
+  console.log(scrollTop, isAtTop, isAtBottom) // Gibt die aktuelle Scrollposition zurück
 */
