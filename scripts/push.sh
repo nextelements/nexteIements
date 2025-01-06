@@ -9,6 +9,8 @@ RESET='\033[0m'
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
 
+git pull origin master
+
 git fetch origin
 
 commit_message=${1:-"Initial Commit"}
