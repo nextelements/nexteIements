@@ -10,6 +10,14 @@ const button = tv({
       success: 'bg-success hover:bg-success-600',
       warning: 'bg-warning hover:bg-warning-600',
       danger: 'bg-danger hover:bg-danger-600',
+    },
+    ripple: {
+      default: 'bg-black/50',
+      primary: 'bg-white/50',
+      secondary: 'bg-white/50',
+      success: 'bg-white/50',
+      warning: 'bg-white/50',
+      danger: 'bg-white/50',
     }
   }
 })
