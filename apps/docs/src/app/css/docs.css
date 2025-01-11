@@ -10,7 +10,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--myapp-divider) / .05);
+  background: transparent;
   border-radius: 100px;
 }
 
@@ -20,7 +20,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: hsl(var(--myapp-divider) / .2);
 }
 
 body {
@@ -67,25 +67,30 @@ body {
 .menu {
     position: relative;
   }
+
   .menu .shadow-top {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    height: 100px; width: 100%;
-    background: linear-gradient(180deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.15870098039215685) 100%);
+    height: 30px; width: 100%;
+    background: linear-gradient(180deg, #000 10%, rgba(0,0,0,0.15870098039215685) 100%);
     z-index: 1;
   }
   .menu .shadow-bottom {
     content: '';
     position: absolute;
     bottom: 0; left: 0;
-    height: 100px; width: 100%;
-    background: linear-gradient(0, rgba(0,0,0,1) 10%, rgba(0,0,0,0.15870098039215685) 100%);
+    height: 30px; width: 100%;
+    background: linear-gradient(0, #000 10%, rgba(0,0,0,0.15870098039215685) 100%);
     z-index: 1;
   }
   .menu .scroll {
     height: calc(100vh - 90px);
-    overflow-y: scroll;
+    overflow: hidden;
+  }
+
+  .menu .scroll:hover {
+    overflow-y: auto;
   }
 
   .menu .scroll .item {
@@ -105,13 +110,11 @@ body {
         .menu .scroll .item .links li a {
           text-indent: 5px;
           transition: .2s;
-          border-left: 1px solid hsl(var(--myapp-divider) / 0.15);
           padding: .25em .75em;
           display: block;
           @apply text-neutral-500;
         }
         .menu .scroll .item .links li:hover a {
-          border-color: hsl(var(--myapp-white) / 100%);
           @apply text-neutral-300;
         }
         .menu .scroll .item .links li a.active {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 export const useSticky = (ref) => {
-  const [stickyTop, setStickyTop] = useState(0)
+  const [ stickyTop, setStickyTop ] = useState(0)
 
   useEffect(() => {
     if (!ref.current) return
@@ -19,7 +19,7 @@ export const useSticky = (ref) => {
     calculateStickyTop()
 
     // Optional: Berechnung bei Fenster-Resize
-    window.addEventListener('resize', calculateStickyTop)
+    //window.addEventListener('resize', calculateStickyTop)
 
     return () => {
       window.removeEventListener('resize', calculateStickyTop)

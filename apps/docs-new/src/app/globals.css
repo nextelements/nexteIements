@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --default-padding: 1em;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--reactify-divider) / .1);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--reactify-divider) / .2);
+}
+
+body {
+  overflow-x: hidden;
+  color: #333;
+}
+
+.body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100vw; height: 100vh;
+  gap: 1em;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 1260px;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+
+    background: hsl(var(--reactify-background) / .8);
+    border-bottom: 1px solid hsl(var(--reactify-divider) / .1);
+    backdrop-filter: blur(4px);
+
+    padding: 1em;
+  }
+  .header .wrapper {
+    display: grid;
+    grid-template-columns: 180px 1fr 180px;
+    align-items: center;
+    gap: 1em;
+  }
+  .header .wrapper .nav {
+    width: 100%;
+    text-align: center;
+  }
+  .header .wrapper .nav li {
+    display: inline-block;
+    margin: 0 .5em;
+  }
+  .header .wrapper .nav li a {
+    padding: 1em;
+  }
+
+.main {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  width: 100vw; height: 100%;
+  max-height: 100%;
+  gap: 1em;
+}
+
+.navigation {
+    
+  }
+  .navigation.nav-shadow:after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    width: 100%;
+    height: 40px;
+    z-index: 1;
+    bottom: 0px;
+  }
+  .navigation .scroll {
+    max-height: 1fr;
+    overflow-y: auto;
+  }
+  .navigation .title {
+    position: sticky;
+    top: 0;
+
+    background: linear-gradient(180deg, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 100%);
+    width: 100%;
+    height: 40px;
+    z-index: 1;
+    font-weight: 500;
+    text-shadow: 0 0 20px #fff;
+  }
+  .navigation .items {
+    margin-top: -1em;
+  }
+  .navigation .items li {
+      position: relative;
+      list-style: none;
+      transition: .2s;
+      margin-bottom: 5px;
+    }
+    .navigation .items li a {
+      display: block;
+      border-radius: 10px;
+      padding: .5em 0;
+      transition: .2s padding;
+      color: #555;
+    }
+    .navigation .items li a:hover {
+      color: #333;
+    }
+
+
+.footer {
+  background: #f0f0f0;
+}
+
+/*utils*/
+.flex {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.text-semibold {
+  font-weight: 500;
+}
