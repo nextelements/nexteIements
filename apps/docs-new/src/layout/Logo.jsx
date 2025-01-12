@@ -1,13 +1,12 @@
 import React from 'react'
+import { UnresolveIcon } from '@nextelements/icons'
 
 const Logo = () => {
   return (
-    <>
-        <div className="text-semibold">
-          Reactify
-          <span className="text-[10px] text-gray-400 ml-1">0.0.0-alpha</span>
-        </div>
-    </>
+    <div className="flex items-center gap-1">
+      <UnresolveIcon className="inline-block" />
+      <p className="text-[110%] font-semibold">resolve.ui</p>
+    </div>
   )
 }
 
