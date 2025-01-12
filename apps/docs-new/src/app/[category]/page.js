@@ -36,10 +36,5 @@ export default async function DynamicMDXCategoryPage({ params }) {
   const { category } = await params
   const { mdxSource, frontMatter } = await getMDXContent(category)
 
-  return (
-    <div>
-      <h1>{frontMatter.title}</h1>
-      <MDXProvider mdxSource={mdxSource} />
-    </div>
-  )
+  return <MDXProvider data={frontMatter} mdxSource={mdxSource} />
 }

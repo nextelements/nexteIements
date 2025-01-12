@@ -1,12 +1,20 @@
 import { Wrapper } from './Wrapper'
 
-const Footer = ({ children }) => {
+const Footer = () => {
   return (
-    <div className="footer">
+    <footer>
       <Wrapper>
-        { children || 'Footer' }
+        <div className="item">
+          &copy; 2025 langheinrich.dev
+        </div>
+        <div className="item">
+          🫡
+        </div>
+        <div className="item">
+          Theme
+        </div>
       </Wrapper>
-    </div>
+    </footer>
   )
 }
 

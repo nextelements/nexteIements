@@ -15,8 +15,7 @@ const Navigation = ({ items }) => {
   const scrollRef = useRef(null);
 
   const { stickyStyle } = useSticky(stickyRef);
-  const { isAtBottom } = useScroll(scrollRef);
-
+  
   const [ isActive, setActive ] = useState(pathname)
 
   useEffect(() => {
@@ -24,11 +23,14 @@ const Navigation = ({ items }) => {
   })
 
   const updateScrollHeight = () => {
+
     const headerHeight = document.querySelector('.header')?.clientHeight || 0;
-    const footerHeight = document.querySelector('.footer')?.clientHeight || 0;
-    const availableHeight = window.innerHeight - (headerHeight + footerHeight);
+    const changeThemeHeight = document.querySelector('.nav-box')?.offsetHeight || 0;
+    
+    const availableHeight = window.innerHeight - (headerHeight + changeThemeHeight);
+
     if (scrollRef.current) {
-      scrollRef.current.style.maxHeight = `calc(${availableHeight}px - (1px + 2em))`;
+      scrollRef.current.style.height = `calc(${availableHeight}px - 1px - 3.5em)`;
     }
   };
 
@@ -62,7 +64,7 @@ const Navigation = ({ items }) => {
           </li>
         ) : (
           <>
-            <li className="subtitle">{item.title}</li>
+            <li className="title">{item.title}</li>
             <ul>{renderSubItems(item.items)}</ul>
           </>
         )}
@@ -83,8 +85,7 @@ const Navigation = ({ items }) => {
     ));
 
   return (
-    <div
-      className={`navigation ${!isAtBottom ? 'nav-shadow' : ''}`}
+    <nav
       ref={stickyRef}
       style={stickyStyle}
     >
@@ -92,7 +93,11 @@ const Navigation = ({ items }) => {
         <div className="title">{capitalize(category)}</div>
         <div className="items">{renderItems()}</div>
       </div>
-    </div>
+
+      <div className="nav-box">
+        Change Theme
+      </div>
+    </nav>
   );
 };
 

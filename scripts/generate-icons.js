@@ -54,7 +54,11 @@ function saveIconFile(name, svg) {
   try {
     fs.writeFileSync(path.join(ICON_SUBFOLDER, fileName), content)
     iconExports.push(`export { ${componentName} } from './${OUTPUT_SUBFOLDER}/${fileName.replace(OUTPUT_EXTENSION, '')}'`)
-    iconMap.push({ name, component: componentName })
+    iconMap.push({ 
+      name, 
+      component: componentName,
+      svg: svg[0],
+     })
   } catch (err) {
     console.error(`Failed to write file for icon: ${name}`, err)
   }

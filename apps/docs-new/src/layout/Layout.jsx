@@ -8,7 +8,7 @@ const Layout = (props) => {
 
   return (
     <ThemeProvider initialTheme="light"> 
-      <div className="body">
+      <div className="template-grid">
         <Header items={getHeaderItems} />
         <Wrapper>
           <Main>

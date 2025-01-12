@@ -1,8 +1,8 @@
 const Content = ({ children }) => {
   return (
-    <div className="content">
+    <section className="content">
       { children || 'Container' }
-    </div>
+    </section>
   )
 }
 

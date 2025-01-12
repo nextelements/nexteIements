@@ -2,9 +2,9 @@ import { Wrapper } from './Wrapper'
 
 const Main = ({ children }) => {
   return (
-    <div className="main">
+    <main>
       { children }
-    </div>
+    </main>
   )
 }
 

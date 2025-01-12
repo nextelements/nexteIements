@@ -19,26 +19,44 @@ export default {
       themes: {
         light: {
           layout: {
-            background: '#fff',
-            color: '#333',
+            background: '#fafafa',
+            divider: '#e7e7e7',
+            color: '#4b5563',
             link: {
-              DEFAULT: '#888',
-              hover: '#555'
+              DEFAULT: '#6b7280',
+              hover: '#202327',
+              active: '#004ca3',
+              'active-light': '#e0efff'
             },
-            base: '#53c1de',
-            footer: 'transparent',
+            content: {
+              1: '#ffffff',
+              2: '#f3f4f6'
+            },
           },
+          colors: {
+            muted: '#6b7280',
+            shadow: '#000000'
+          }
         },
         dark: {
           layout: {
-            background: '#030303',
-            color: '#eee',
+            background: '#0a0a0a',
+            divider: '#2a2a2a',
+            color: '#f1f5f9',
             link: {
-              DEFAULT: '#d0d0d0',
-              hover: '#a0a0a0'
+              DEFAULT: '#a3a3a3',
+              hover: '#f1f5f9',
+              active: '#0087e2',
+              'active-light': '#172229'
             },
-            base: '#53c1de',
-            footer: 'transparent',
+            content: {
+              1: '#000000',
+              2: '#0f0f0f'
+            },
+          },
+          colors: {
+            muted: '#6b7280',
+            shadow: '#000000'
           },
         }
       }

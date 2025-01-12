@@ -16,10 +16,10 @@ const Header = ({ items }) => {
   })
 
   return (
-    <div className="header">
+    <header>
       <Wrapper>
         <Logo />
-        <div className="nav">
+        <nav>
           {items.map(({ title, href }) => {
             return (
               <li key={title}>
@@ -31,9 +31,9 @@ const Header = ({ items }) => {
               </li>
             )
           })}
-        </div>
+        </nav>
       </Wrapper>
-    </div>
+    </header>
   );
 };
 
