@@ -1,69 +1,44 @@
-import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote } from 'next-mdx-remote';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXProvider } from '@/layout/MDXProvider'
 
-export async function generateStaticParams() {
-  const filePath = path.join(process.cwd(), 'src/content', 'components/accordion.mdx');
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { content, data } = matter(fileContents);
+async function getMDXContent(category, slug) {
+  const postsDirectory = path.join(process.cwd(), 'src/content')
+  const filePath = path.join(postsDirectory, category, `${slug || 'index'}.mdx`)
 
-  // Serialisiere den MDX-Inhalt
-  const mdxSource = await serialize(content);
+  if (!fs.existsSync(filePath)) {
+    throw new Error('MDX-Datei nicht gefunden');
+  }
+
+  const fileContent = fs.readFileSync(filePath, 'utf8')
+  const { data, content } = matter(fileContent)
+  const mdxSource = await serialize(content)
+
+  return { 
+    frontMatter: data, 
+    mdxSource
+  }
+}
+
+export async function generateMetadata({ params }) {
+  const { category, slug } = await params
+  const { frontMatter } = await getMDXContent(category, slug)
 
   return {
-    props: {
-      mdxSource,
-    },
-  };
+    title: frontMatter.title,
+  }
 }
 
-export default function Page({ mdxSource }) {
-  return (
-    <>
-      <h1>MDX Content</h1>
-      <MDXRemote {...mdxSource} />
-    </>
-  );
-}
-
-
-
-
-
-
-/*
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { MDX } from '@/layout'
-
-export async function generateStaticParams() {
-  const contentDir = path.join(process.cwd(), 'src/content');
-  const categories = fs.readdirSync(contentDir);
-
-  return categories.flatMap((category) => {
-    const files = fs.readdirSync(path.join(contentDir, category));
-    return files.map((file) => ({
-      category
-    }));
-  });
-}
-
-export default async function Page({ params }) {
-  const { category } = await params;
-
-  const filePath = path.join(process.cwd(), 'src/content', category, `index.mdx`);
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { content, data } = matter(fileContents);
+export default async function DynamicMDXCategoryPage({ params }) {
+  const { category, slug } = await params
+  const { mdxSource, frontMatter } = await getMDXContent(category, slug)
 
   return (
-    <>
-      <h1>{data.title}</h1>
-      <p>{data.date}</p>
-      <MDX content={content} />
-    </>
-  );
+    <div>
+      <h1>{frontMatter.title}</h1>
+      <MDXProvider mdxSource={mdxSource} />
+    </div>
+  )
 }
-*/

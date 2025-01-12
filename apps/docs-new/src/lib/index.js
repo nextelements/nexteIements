@@ -2,6 +2,7 @@ import fs from 'file-system'
 import path from 'path'
 import matter from 'gray-matter';
 import { capitalize } from '@/utils/functions';
+import { serialize } from 'next-mdx-remote/serialize';
 
 const contentDirectory = path.join(process.cwd(), 'src/content');
 
@@ -27,3 +28,24 @@ export function getAllMdxFiles() {
     });
   });
 }
+
+const getMdxFileContent = (category, slug) => {
+  const filePath = path.join(process.cwd(), 'src', 'content', category, `${slug}.mdx`);
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { content, data } = matter(fileContent);
+
+  return {
+    content: content,
+    metadata: data,
+  };
+};
+
+export const getMdxContent = async (category, slug) => {
+  const { content, metadata } = getMdxFileContent(category, slug);
+  const mdxSource = await serialize(content);
+
+  return {
+    mdxSource,
+    metadata,
+  };
+};

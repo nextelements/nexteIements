@@ -1,33 +1,44 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { MDX } from '@/layout'
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXProvider } from '@/layout/MDXProvider'
 
-export async function generateStaticParams() {
-  const contentDir = path.join(process.cwd(), 'src/content');
-  const categories = fs.readdirSync(contentDir);
+async function getMDXContent(category, slug) {
+  const postsDirectory = path.join(process.cwd(), 'src/content')
+  const filePath = path.join(postsDirectory, category, `${slug}.mdx`)
 
-  return categories.flatMap((category) => {
-    const files = fs.readdirSync(path.join(contentDir, category));
-    return files.map((file) => ({
-      category,
-      slug: file.replace(/\.mdx$/, ''),
-    }));
-  });
+  if (!fs.existsSync(filePath)) {
+    throw new Error('MDX-Datei nicht gefunden');
+  }
+
+  const fileContent = fs.readFileSync(filePath, 'utf8')
+  const { data, content } = matter(fileContent)
+  const mdxSource = await serialize(content)
+
+  return { 
+    frontMatter: data, 
+    mdxSource
+  }
 }
 
-export default async function Page({ params }) {
-  const { category, slug } = await params;
+export async function generateMetadata({ params }) {
+  const { category, slug } = await params
+  const { frontMatter } = await getMDXContent(category, slug)
 
-  const filePath = path.join(process.cwd(), 'src/content', category, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { content, data } = matter(fileContents);
+  return {
+    title: frontMatter.title,
+  }
+}
+
+export default async function DynamicMDXCategoryPage({ params }) {
+  const { category, slug } = await params
+  const { mdxSource, frontMatter } = await getMDXContent(category, slug)
 
   return (
-    <>
-      <h1>{data.title}</h1>
-      <p>{data.date}</p>
-      <MDX content={content} />
-    </>
-  );
+    <div>
+      <h1>{frontMatter.title}</h1>
+      <MDXProvider mdxSource={mdxSource} />
+    </div>
+  )
 }
