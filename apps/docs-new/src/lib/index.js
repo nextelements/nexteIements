@@ -1,4 +1,4 @@
-import fs from 'file-system'
+import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter';
 import { capitalize } from '@/utils/functions';
