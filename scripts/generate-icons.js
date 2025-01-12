@@ -17,6 +17,15 @@ const ICON_SUBFOLDER = path.join(OUTPUT_DIR, OUTPUT_SUBFOLDER)
 const iconExports = []
 const iconMap = []
 
+const RED = '\033[0;31m';
+const GREEN = '\033[0;32m';
+const YELLOW = '\033[0;33m';
+const BLUE = '\033[0;34m';
+const RESET = '\033[0m';
+
+const BOLD = '\033[1m';
+const UNDERLINE = '\033[4m';
+
 function generateIconComponent(name, svg) {
   return `
 import React from 'react'
@@ -55,11 +64,11 @@ async function createDirectories() {
   try {
     if (!fs.existsSync(ICON_SUBFOLDER)) {
       fs.mkdirSync(ICON_SUBFOLDER, { recursive: true })
-      console.log('Icon subfolder created.')
+      console.log(GREEN, 'Icon subfolder created.', RESET)
     }
     if (!fs.existsSync(OUTPUT_DIR)) {
       fs.mkdirSync(OUTPUT_DIR, { recursive: true })
-      console.log('Output directory created.')
+      console.log(GREEN, 'Output directory created.', RESET)
     }
   } catch (err) {
     console.error('Error creating directories:', err)
@@ -75,7 +84,7 @@ async function generateIcons() {
 
     fs.writeFileSync(path.join(OUTPUT_DIR, './index.js'), iconExports.join('\n'))
     fs.writeFileSync(path.join(OUTPUT_DIR, './icon.map.js'), `export const iconMap = ${JSON.stringify(iconMap, null, 2)};`)
-    console.log('Icons and supporting files successfully generated!')
+    console.log(GREEN, `Icons and supporting files successfully generated! (${iconExports.length} files)`, RESET)
   } catch (err) {
     console.error('Error generating icons:', err);
   }
