@@ -40,7 +40,7 @@ export const ThemeProvider = ({
     document.documentElement.classList.remove(localStorage.getItem('theme', theme))
     document.documentElement.classList.add(theme)
     localStorage.setItem('theme', theme)
-  }, [ initialTheme ])
+  }, [ initialTheme, theme ])
 
   if (!isMounted) {
     return null

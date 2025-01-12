@@ -1,0 +1,40 @@
+.steptree {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin: 1em 0 1em 1em;
+}
+
+.steptree .item {
+    margin-left: 1em;
+    padding: .25em 1em .25em 1em;
+  }
+  .steptree .item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; width: 1px;
+    background: var(--divider);
+  }
+  .steptree .item .title {
+      position: relative;
+      font-size: 1.25vmax;
+    }
+    .steptree .item .title:before {
+      z-index: 1;
+      position: absolute;
+      content: attr(data-step);
+      width: 36px; height: 36px;
+      font-size: 1.15vmax;
+      border-radius: 999px;
+      border: 3px solid var(--background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--divider);
+      font-weight: 800;
+      left: -50px;
+      top: 0;
+    }

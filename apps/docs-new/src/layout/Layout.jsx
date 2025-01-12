@@ -7,7 +7,7 @@ import { getHeaderItems } from '@/lib/getHeaderItems'
 const Layout = (props) => {
 
   return (
-    <ThemeProvider initialTheme="light"> 
+    <ThemeProvider> 
       <div className="template-grid">
         <Header items={getHeaderItems} />
         <Wrapper>

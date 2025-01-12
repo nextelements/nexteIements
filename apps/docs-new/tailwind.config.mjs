@@ -25,8 +25,8 @@ export default {
             link: {
               DEFAULT: '#6b7280',
               hover: '#202327',
-              active: '#004ca3',
-              'active-light': '#e0efff'
+              active: '#000000',
+              'active-light': '#f0f0f0'
             },
             content: {
               1: '#ffffff',
@@ -46,8 +46,8 @@ export default {
             link: {
               DEFAULT: '#a3a3a3',
               hover: '#f1f5f9',
-              active: '#0087e2',
-              'active-light': '#172229'
+              active: '#ffffff',
+              'active-light': '#0f0f0f'
             },
             content: {
               1: '#000000',

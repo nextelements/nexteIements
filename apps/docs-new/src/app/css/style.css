@@ -6,7 +6,7 @@
   --padding: 1em;
   --transitionSpeed: .2s;
   --wrapperWidth: 90vw;
-  --defaultFontSize: 90%;
+  --defaultFontSize: 100%;
   --defaultGap: 1em;
   --background: hsl(var(--reactify-background));
   --color: hsl(var(--reactify-color));
@@ -91,8 +91,21 @@ header {
           color: hsl(var(--reactify-link-hover));
         }
         header .wrapper nav li a:is(.active) {
-          color: hsl(var(--reactify-link-hover));
-        }
+            position: relative;
+            color: hsl(var(--reactify-link-hover));
+            font-weight: 500;
+          }
+          header .wrapper nav li a:is(.active):after {
+            content: '';
+            position: absolute;
+            bottom: -21px;
+            left: 50%;
+            background: currentColor;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 4px;
+            border-radius: 2px;
+          }
 
   /* Main */
   main {
@@ -126,8 +139,9 @@ header {
         font-weight: 500;
         margin-bottom: .5em;
       }
-      main nav .title:not(:first-child) {
-        margin: 1em 0 .5em;
+      main nav .items .title:first-child {
+        margin-top: 2em;
+        margin-bottom: .5em;
       }
 
     main nav .items {
@@ -139,15 +153,17 @@ header {
         main nav .items li a:before {
             position: absolute;
             content: '';
-            top: 0; left: -.5em;
-            width: 1px; height: 120%; /*oversize*/
+            top: 0; left: -.75em;
+            width: 3px; height: 120%;
             background: var(--divider);
+            border-radius: 3px;
+            mix-blend-mode:soft-light;
+            opacity: .5;
           }
           main nav .items li a {
             position: relative;
             color: var(--link);
-            transition: var(--transitionSpeed);
-            margin: .5em 0 .5em 1em;
+            margin: .25em 0 .25em 1em;
             padding: .5em .5em;
             border-radius: 10px;
             display: block;
@@ -156,10 +172,21 @@ header {
             color: var(--link-hover);
           }
           main nav .items li a.active {
-            color: var(--link-active);
-            background: var(--link-active-light);
-            font-weight: 500;
-          }
+              position: relative;
+              color: var(--link-active);
+              background: var(--link-active-light);
+              font-weight: 500;
+            }
+            main nav .items li a:is(.active):after {
+              content: '';
+              position: absolute;
+              background: var(--link-active);
+              top: 50%; left: -11px;
+              transform: translateY(-50%);
+              height: 50%;
+              width: 3px;
+              border-radius: 3px;
+            }
 
   /* Content */
   section.content {

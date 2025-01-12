@@ -2,10 +2,15 @@
 
 import { MDXRemote } from 'next-mdx-remote';
 import { IconLibrary } from '@/components/IconLibrary';
+import { StepTree, StepTreeItem } from '@/components/StepTree';
+import { Code } from '@/components/Code';
 
 const components = {
   h1: (props) => <h1 {...props} />,
-  IconLibrary
+  IconLibrary,
+  StepTree,
+  StepTreeItem,
+  Code
 };
 
 export const MDXProvider = ({ mdxSource, data }) => {

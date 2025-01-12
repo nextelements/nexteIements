@@ -1,5 +1,6 @@
 'use client';
 
+import { ThemeToggle } from '@nextelements/themes'
 import { useEffect, useRef, useState } from 'react';
 import { useSticky, useScroll } from '@nextelements/hooks';
 import { capitalize } from '@/utils/functions';
@@ -17,10 +18,6 @@ const Navigation = ({ items }) => {
   const { stickyStyle } = useSticky(stickyRef);
   
   const [ isActive, setActive ] = useState(pathname)
-
-  useEffect(() => {
-    setActive(pathname)
-  })
 
   const updateScrollHeight = () => {
 
@@ -47,7 +44,11 @@ const Navigation = ({ items }) => {
 
   const filteredItems = items[category] || [];
 
-  const exportPath = (s, c) => s.replace('@', `/${category}`)
+  const exportPath = (s) => s.replace('@', `/${category}`)
+
+  useEffect(() => {
+    setActive(pathname)
+  })
 
   const renderItems = () => 
     filteredItems.map((item, index) => (
@@ -56,8 +57,8 @@ const Navigation = ({ items }) => {
           <li>
             <Link 
               href={exportPath(item.href)}
-              className={cx(isActive == exportPath(item.href) && 'active')}
               onClick={() => setActive(exportPath(item.href))}
+              className={cx(isActive == exportPath(item.href) && 'active')}
               >
                 {item.title}
             </Link>
@@ -95,7 +96,7 @@ const Navigation = ({ items }) => {
       </div>
 
       <div className="nav-box">
-        Change Theme
+        <ThemeToggle />
       </div>
     </nav>
   );
