@@ -126,6 +126,9 @@ body {
       color: #333;
     }
 
+    .content {
+      white-space: pre-line;
+    }
 
 .footer {
   background: #f0f0f0;

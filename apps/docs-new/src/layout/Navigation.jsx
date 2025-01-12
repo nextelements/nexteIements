@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react"
 import { useSticky, useScroll } from "@nextelements/hooks"
+import { capitalize } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link'
-import { capitalize } from '@/utils/functions';
 
 const Navigation = ({ items }) => {
 

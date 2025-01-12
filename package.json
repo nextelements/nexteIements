@@ -12,6 +12,7 @@
     "push": "sh ./scripts/push.sh"
   },
   "devDependencies": {
-    "turbo": "^2.3.3"
+    "turbo": "^2.3.3",
+    "@blueprintjs/icons": "^5.16.0"
   }
 }

@@ -11,7 +11,7 @@ export async function generateStaticParams() {
     const files = fs.readdirSync(path.join(contentDir, category));
     return files.map((file) => ({
       category,
-      slug: file.replace(/\.md$/, ''),
+      slug: file.replace(/\.mdx$/, ''),
     }));
   });
 }
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
   const { category, slug } = await params;
 
-  const filePath = path.join(process.cwd(), 'src/content', category, `${slug}.md`);
+  const filePath = path.join(process.cwd(), 'src/content', category, `${slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { content, data } = matter(fileContents);
 

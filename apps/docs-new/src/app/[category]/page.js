@@ -1,3 +1,39 @@
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+export async function generateStaticParams() {
+  const filePath = path.join(process.cwd(), 'src/content', 'components/accordion.mdx');
+  const fileContents = fs.readFileSync(filePath, 'utf8');
+  const { content, data } = matter(fileContents);
+
+  // Serialisiere den MDX-Inhalt
+  const mdxSource = await serialize(content);
+
+  return {
+    props: {
+      mdxSource,
+    },
+  };
+}
+
+export default function Page({ mdxSource }) {
+  return (
+    <>
+      <h1>MDX Content</h1>
+      <MDXRemote {...mdxSource} />
+    </>
+  );
+}
+
+
+
+
+
+
+/*
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -18,7 +54,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
   const { category } = await params;
 
-  const filePath = path.join(process.cwd(), 'src/content', category, `index.md`);
+  const filePath = path.join(process.cwd(), 'src/content', category, `index.mdx`);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { content, data } = matter(fileContents);
 
@@ -30,3 +66,4 @@ export default async function Page({ params }) {
     </>
   );
 }
+*/
