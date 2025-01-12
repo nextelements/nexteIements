@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "push": "sh ./scripts/push.sh"
+    "push": "node ./scripts/push-to-git.js"
   },
   "devDependencies": {
     "turbo": "^2.3.3",
