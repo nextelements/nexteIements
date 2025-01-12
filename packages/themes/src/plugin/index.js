@@ -140,7 +140,7 @@ export const NextElements = (config) => {
     Object.keys(customThemes).map((themeName) => {
       addVariant(themeName, ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
-          return `.${e(`${themeName}${separator}${className}`) + `:is(.${themeName} *)`}`
+            return `.${e(`${themeName}${separator}${className}`) + `:is(.${e(themeName)} *)`}`
         })
       })
     })
