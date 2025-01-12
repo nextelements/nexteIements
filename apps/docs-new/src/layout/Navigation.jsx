@@ -1,61 +1,99 @@
-'use client'
+'use client';
 
-import { useEffect, useRef } from "react"
-import { useSticky, useScroll } from "@nextelements/hooks"
+import { useEffect, useRef, useState } from 'react';
+import { useSticky, useScroll } from '@nextelements/hooks';
 import { capitalize } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link'
+import Link from 'next/link';
+import { cx } from '@nextelements/utilities';
 
 const Navigation = ({ items }) => {
-
   const pathname = usePathname();
-  const parts = pathname.split('/').filter(Boolean);
+  const category = pathname.split('/').filter(Boolean)[0];
 
-  const category = parts[0];
-  const slug = parts[1];
+  const stickyRef = useRef(null);
+  const scrollRef = useRef(null);
 
-  console.log(category, slug)
+  const { stickyStyle } = useSticky(stickyRef);
+  const { isAtBottom } = useScroll(scrollRef);
 
-  const stickyRef = useRef(null)
-  const scrollRef = useRef(null)
-
-  const { stickyStyle } = useSticky(stickyRef)
-  const { isAtBottom } = useScroll(scrollRef)
-
-  const setScrollHeight = () => {
-    const header = document.querySelector('.header').clientHeight
-    const footer = document.querySelector('.footer').clientHeight
-    const h = window.innerHeight - (footer + header)
-    scrollRef.current.style.maxHeight = `calc(${h}px - (1px - 2em))`
-  }
+  const [ isActive, setActive ] = useState(pathname)
 
   useEffect(() => {
-    window.addEventListener('resize', setScrollHeight);
-    setScrollHeight()
-    return () => {
-      window.removeEventListener('resize', setScrollHeight);
-    }
+    setActive(pathname)
   })
 
-  const newItems = items.filter((item) => item.category === category)
+  const updateScrollHeight = () => {
+    const headerHeight = document.querySelector('.header')?.clientHeight || 0;
+    const footerHeight = document.querySelector('.footer')?.clientHeight || 0;
+    const availableHeight = window.innerHeight - (headerHeight + footerHeight);
+    if (scrollRef.current) {
+      scrollRef.current.style.maxHeight = `calc(${availableHeight}px - (1px + 2em))`;
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => updateScrollHeight();
+
+    window.addEventListener('resize', handleResize);
+    updateScrollHeight();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const filteredItems = items[category] || [];
+
+  const exportPath = (s, c) => s.replace('@', `/${category}`)
+
+  const renderItems = () => 
+    filteredItems.map((item, index) => (
+      <div key={index} className="navigation-item">
+        {!item.items ? (
+          <li>
+            <Link 
+              href={exportPath(item.href)}
+              className={cx(isActive == exportPath(item.href) && 'active')}
+              onClick={() => setActive(exportPath(item.href))}
+              >
+                {item.title}
+            </Link>
+          </li>
+        ) : (
+          <>
+            <li className="subtitle">{item.title}</li>
+            <ul>{renderSubItems(item.items)}</ul>
+          </>
+        )}
+      </div>
+    ))
+
+  const renderSubItems = (items) =>
+    items.map((item, index) => (
+      <li key={index}>
+        <Link 
+          href={exportPath(item.href)}
+          className={cx(isActive == exportPath(item.href) && 'active')}
+          onClick={() => setActive(exportPath(item.href))}
+          >
+            {item.title}
+        </Link>
+      </li>
+    ));
 
   return (
-    <div className={`navigation ${!isAtBottom ? ' nav-shadow' : ''}`} ref={stickyRef} style={stickyStyle}>
+    <div
+      className={`navigation ${!isAtBottom ? 'nav-shadow' : ''}`}
+      ref={stickyRef}
+      style={stickyStyle}
+    >
       <div className="scroll" ref={scrollRef}>
-        <div className="title">{ capitalize(category) }</div>
-        <div className="items">
-          {newItems.map((item, i) => {
-          return (
-            <li key={i}>
-              <span className="indicator"></span>
-              <Link href={`../${item.category}/${item.fileName.toLowerCase()}`}>{item.linkname}</Link>
-            </li>
-            )
-          })}
-        </div>
+        <div className="title">{capitalize(category)}</div>
+        <div className="items">{renderItems()}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { Navigation }
+export { Navigation };

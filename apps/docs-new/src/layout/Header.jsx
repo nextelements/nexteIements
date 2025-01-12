@@ -1,20 +1,40 @@
-import { Wrapper } from './Wrapper'
-import { Logo } from './Logo'
-import Link from 'next/link'
+'use client';
 
-const Header = () => {
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { Wrapper } from './Wrapper';
+import { Logo } from './Logo';
+import { cx } from '@nextelements/utilities';
+import Link from 'next/link';
+
+const Header = ({ items }) => {
+  const pathname = usePathname()
+  const [ active, setActive ] = useState(pathname);
+
+  useEffect(() => {
+    setActive(pathname)
+  })
+
   return (
     <div className="header">
       <Wrapper>
         <Logo />
         <div className="nav">
-          <li><Link href="/introduction">Introduction</Link></li>
-          <li><Link href="/customization">Customization</Link></li>
-          <li><Link href="/components">Components</Link></li>
+          {items.map(({ title, href }) => {
+            return (
+              <li key={title}>
+                <Link 
+                  href={href}
+                  className={cx(`/${active.split('/')[1]}` == `/${href.split('/')[1]}` && 'active')}
+                  onClick={() => setActive(href)}
+                >{title}</Link>
+              </li>
+            )
+          })}
         </div>
       </Wrapper>
     </div>
-  )
-}
+  );
+};
 
-export { Header }
+export { Header };

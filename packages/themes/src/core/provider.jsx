@@ -13,6 +13,7 @@ export const ThemeProvider = ({
   defaultDarkTheme = 'dark',
   initialTheme = 'system',
 }) => {
+
   const [theme, setTheme] = useState(initialTheme)
   const [isMounted, setMounted] = useState(false)
 
@@ -30,14 +31,16 @@ export const ThemeProvider = ({
     }
 
     setMounted(true)
-  }, [])
+  }, [ initialTheme ])
 
   useEffect(() => {
-    if (theme === 'system' || theme === null) return
-    document.documentElement.classList.remove(...themes)
+    if (theme === 'system' || theme === null) {
+      return
+    }
+    document.documentElement.classList.remove(localStorage.getItem('theme', theme))
     document.documentElement.classList.add(theme)
     localStorage.setItem('theme', theme)
-  }, [theme])
+  }, [ initialTheme ])
 
   if (!isMounted) {
     return null

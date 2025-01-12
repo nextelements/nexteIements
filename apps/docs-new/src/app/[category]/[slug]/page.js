@@ -1,15 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import { serialize } from 'next-mdx-remote/serialize'
 import { MDXProvider } from '@/layout/MDXProvider'
 
 async function getMDXContent(category, slug) {
-  const postsDirectory = path.join(process.cwd(), 'src/content')
-  const filePath = path.join(postsDirectory, category, `${slug}.mdx`)
+  const dir = path.join(process.cwd(), 'src/content')
+  const errorPath = path.join(dir, '_', `404.mdx`)
+  let filePath = path.join(dir, category, `${slug}.mdx`)
 
   if (!fs.existsSync(filePath)) {
-    throw new Error('MDX-Datei nicht gefunden');
+    filePath = errorPath
   }
 
   const fileContent = fs.readFileSync(filePath, 'utf8')
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }) {
   const { frontMatter } = await getMDXContent(category, slug)
 
   return {
-    title: frontMatter.title,
+    title: `Documentation - ${frontMatter.title || '404'}`,
   }
 }
 

@@ -3,13 +3,14 @@ import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXProvider } from '@/layout/MDXProvider'
+import { redirect } from 'next/navigation'
 
-async function getMDXContent(category, slug) {
-  const postsDirectory = path.join(process.cwd(), 'src/content')
-  const filePath = path.join(postsDirectory, category, `${slug || 'index'}.mdx`)
+async function getMDXContent(category) {
+  const dir = path.join(process.cwd(), 'src/content')
+  let filePath = path.join(dir, category, `index.mdx`)
 
   if (!fs.existsSync(filePath)) {
-    throw new Error('MDX-Datei nicht gefunden');
+    return redirect('./')
   }
 
   const fileContent = fs.readFileSync(filePath, 'utf8')
@@ -23,8 +24,8 @@ async function getMDXContent(category, slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const { category, slug } = await params
-  const { frontMatter } = await getMDXContent(category, slug)
+  const { category } = await params
+  const { frontMatter } = await getMDXContent(category)
 
   return {
     title: frontMatter.title,
@@ -32,8 +33,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function DynamicMDXCategoryPage({ params }) {
-  const { category, slug } = await params
-  const { mdxSource, frontMatter } = await getMDXContent(category, slug)
+  const { category } = await params
+  const { mdxSource, frontMatter } = await getMDXContent(category)
 
   return (
     <div>

@@ -15,7 +15,33 @@ export default {
   },
   plugins: [ 
     NextElements({
-      prefix: 'reactify'
+      prefix: 'reactify',
+      themes: {
+        light: {
+          layout: {
+            background: '#fff',
+            color: '#333',
+            link: {
+              DEFAULT: '#888',
+              hover: '#555'
+            },
+            base: '#53c1de',
+            footer: 'transparent',
+          },
+        },
+        dark: {
+          layout: {
+            background: '#030303',
+            color: '#eee',
+            link: {
+              DEFAULT: '#d0d0d0',
+              hover: '#a0a0a0'
+            },
+            base: '#53c1de',
+            footer: 'transparent',
+          },
+        }
+      }
     }) 
   ],
 };

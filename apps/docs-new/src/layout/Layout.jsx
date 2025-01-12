@@ -1,19 +1,18 @@
 import { ThemeProvider } from '@nextelements/themes'
 import { Content, Main, Footer, Header, Navigation, Wrapper, Logo } from './'
 
-import { getAllMdxFiles } from '@/lib'
+import { getContentItems } from '@/lib/getContentItems'
+import { getHeaderItems } from '@/lib/getHeaderItems'
 
 const Layout = (props) => {
 
-  const items = getAllMdxFiles();
-
   return (
-    <ThemeProvider initialTheme="light">
+    <ThemeProvider initialTheme="light"> 
       <div className="body">
-        <Header />
+        <Header items={getHeaderItems} />
         <Wrapper>
           <Main>
-            <Navigation items={items} />
+            <Navigation items={getContentItems} />
             <Content>
               { props.children }
             </Content>
