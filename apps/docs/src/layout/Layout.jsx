@@ -1,11 +1,10 @@
 import { ThemeProvider } from '@nextelements/themes'
-import { Content, Main, Footer, Header, Navigation, Wrapper, Logo } from './'
+import { Content, Main, Footer, Header, Navigation, Wrapper } from '.'
 
 import { getContentItems } from '@/lib/getContentItems'
 import { getHeaderItems } from '@/lib/getHeaderItems'
 
 const Layout = (props) => {
-
   return (
     <ThemeProvider> 
       <div className="template-grid">

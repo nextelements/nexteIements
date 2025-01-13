@@ -1,4 +1,4 @@
-import { iconMap } from '../../../../../packages/icons/icon.map'
+import { iconMap } from '@nextelements/icons/icon.map'
 import { PrintIcon } from './PrintIcon'
 
 import { cx } from '@nextelements/utilities'

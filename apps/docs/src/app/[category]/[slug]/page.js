@@ -6,7 +6,7 @@ import { MDXProvider } from '@/layout/MDXProvider'
 
 async function getMDXContent(category, slug) {
   const dir = path.join(process.cwd(), 'src/content')
-  const errorPath = path.join(dir, '404', `404.mdx`)
+  const errorPath = path.join(dir, 'error', `error-404.mdx`)
   let filePath = path.join(dir, category, `${slug}.mdx`)
 
   if (!fs.existsSync(filePath)) {

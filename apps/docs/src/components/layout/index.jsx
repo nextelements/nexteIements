@@ -1,5 +1,0 @@
-export { Header } from './Header'
-export { Content } from './Content'
-export { Menu } from './Menu'
-export { Wrapper } from './Wrapper'
-export { Sidebar } from './Sidebar'
