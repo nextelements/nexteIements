@@ -3,16 +3,34 @@ import { common } from './common'
 
 const defaultLightThemeColors = {
   layout: {
-    background: '#ffffff',
-    foreground: '#000000',
-    divider: 'rgba(0, 0, 0, .15)',
+    background: '#fafafa',
+    foreground: '#4b5563',
+    divider: '#e7e7e7',
     overlay: '#000000',
+    shadow: '#000000',
+    content: {
+      1: '#ffffff',
+      2: '#f3f4f6' 
+    },
+    link: {
+      DEFAULT: '#6b7280',
+      hover: '#202327',
+      active: {
+        DEFAULT: '#000000',
+        light: '#f0f0f0'
+      }
+    }
   },
   colors: {
     default: {
       ...common.neutral,
       foreground: common.neutral[500],
       DEFAULT: common.black,
+    },
+    muted: {
+      ...common.zinc,
+      foreground: common.zinc[500],
+      DEFAULT: common.zinc[500],
     },
     primary: {
       ...common.blue,
@@ -44,16 +62,34 @@ const defaultLightThemeColors = {
 
 const defaultDarkThemeColors = {
   layout: {
-    background: '#000000',
-    foreground: '#ffffff',
-    divider: 'rgba(255, 255, 255, .3)',
+    background: '#0a0a0a',
+    foreground: '#f1f5f9',
+    divider: '#2a2a2a',
     overlay: '#000000',
+    shadow: '#000000',
+    content: {
+      1: '#000000',
+      2: '#0f0f0f'
+    },
+    link: {
+      DEFAULT: '#a3a3a3',
+      hover: '#f1f5f9',
+      active: {
+        DEFAULT: '#ffffff',
+        light: '#0f0f0f'
+      }
+    }
   },
   colors: {
     default: {
       ...swap(common.neutral),
       foreground: common.neutral[500],
       DEFAULT: common.white,
+    },
+    muted: {
+      ...swap(common.zinc),
+      foreground: common.zinc[500],
+      DEFAULT: common.zinc[500],
     },
     primary: {
       ...swap(common.sky),

@@ -1,19 +1,23 @@
 import { ThemeProvider } from '@nextelements/themes'
-import { Content, Main, Footer, Header, Navigation, Wrapper } from '.'
+import { Content, ContentNav, Main, Footer, Header, Navigation, Wrapper } from '.'
 
 import { getContentItems } from '@/lib/getContentItems'
 import { getHeaderItems } from '@/lib/getHeaderItems'
+import { NavigationNew } from './NavigationNew'
 
-const Layout = (props) => {
+const testnewnav = false
+
+const Layout = (props) => {  
   return (
     <ThemeProvider> 
       <div className="template-grid">
         <Header items={getHeaderItems} />
         <Wrapper>
           <Main>
-            <Navigation items={getContentItems} />
+            {testnewnav ? <NavigationNew /> : <Navigation items={getContentItems} />}
             <Content>
               { props.children }
+              <ContentNav items={getContentItems} />
             </Content>
           </Main>
         </Wrapper>

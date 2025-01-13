@@ -1,5 +1,6 @@
 export { Layout } from './Layout'
 export { Content } from './Content'
+export { ContentNav } from './ContentNav'
 export { Footer } from './Footer'
 export { Header } from './Header'
 export { Navigation } from './Navigation'

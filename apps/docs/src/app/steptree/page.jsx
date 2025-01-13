@@ -2,6 +2,7 @@ import { StepTree, StepTreeItem } from '@/components/StepTree';
 import { Code } from '@/components/Code';
 
 export default function () {
+
   return (
     <>
       <h1>Install resolve-ui</h1>
@@ -21,5 +22,4 @@ export default function () {
       </StepTree>
     </>
   )
-
 }

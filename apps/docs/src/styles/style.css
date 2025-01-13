@@ -9,7 +9,7 @@
   --defaultFontSize: 100%;
   --defaultGap: 1em;
   --background: hsl(var(--reactify-background));
-  --color: hsl(var(--reactify-color));
+  --color: hsl(var(--reactify-foreground));
   --divider: hsl(var(--reactify-divider));
   --muted: hsl(var(--reactify-muted));
 
@@ -189,9 +189,25 @@ header {
             }
 
   /* Content */
-  section.content {
-    padding: 1em;
-  }
+  .content {
+      padding: 1em;
+    }
+
+    .content .content-nav {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+      }
+      .content .content-nav .previous-page,
+      .content .content-nav .next-page {
+        padding: 1em;
+      }
+      .content .content-nav .previous-page {
+        
+      }
+      .content .content-nav .next-page {
+
+      }  
 
   /* Footer */
   footer {
