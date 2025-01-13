@@ -48,7 +48,7 @@ const Navigation = ({ items }) => {
 
   useEffect(() => {
     setActive(pathname)
-  })
+  }, [ pathname ])
 
   const renderItems = () => 
     filteredItems.map((item, index) => (

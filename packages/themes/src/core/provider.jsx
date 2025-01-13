@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useLayoutEffect } from 'react'
 
 const ThemeContext = createContext()
 
@@ -20,10 +20,10 @@ export const ThemeProvider = ({
   initialTheme = 'system',
 }) => {
 
-  const [theme, setTheme] = useState(initialTheme)
-  const [isMounted, setMounted] = useState(false)
+  const [ theme, setTheme ] = useState(initialTheme)
+  const [ isClient, setClient ] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const scheme = window.matchMedia('(prefers-color-scheme: dark)').matches
       ? defaultDarkTheme
       : defaultLightTheme
@@ -36,25 +36,21 @@ export const ThemeProvider = ({
       setTheme(scheme)
     }
 
-    setMounted(true)
+    setClient(true)
   }, [ initialTheme ])
 
   useEffect(() => {
     if (theme === 'system' || theme === null) {
       return
     }
-    document.documentElement.classList.remove(localStorage.getItem('theme', theme))
+    document.documentElement.classList.remove(...themes)
     document.documentElement.classList.add(theme)
     localStorage.setItem('theme', theme)
   }, [ initialTheme, theme ])
 
-  if (!isMounted) {
-    return null
-  }
-
   return (
     <ThemeContext.Provider value={{ themes, theme, setTheme }}>
-      {children}
+      {isClient && children}
     </ThemeContext.Provider>
   )
 }

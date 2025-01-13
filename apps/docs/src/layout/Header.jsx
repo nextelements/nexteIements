@@ -11,10 +11,6 @@ const Header = ({ items }) => {
   const pathname = usePathname()
   const [ active, setActive ] = useState(pathname);
 
-  useEffect(() => {
-    setActive(pathname)
-  })
-
   return (
     <header>
       <Wrapper>

@@ -1,10 +1,10 @@
 import { tv } from 'tailwind-variants'
 
 const button = tv({
-  base: 'px-4 py-2 hover:cursor-pointer font-semibold rounded-md shadow-md active:shadow-sm transition-all duration-200',
+  base: 'px-4 py-2 hover:cursor-pointer rounded-md shadow-md active:shadow-sm transition-all duration-200 text-white',
   variants: {
     color: {
-      default: 'bg-default hover:bg-default-600',
+      default: 'bg-default hover:bg-default-800 dark:text-black',
       primary: 'bg-primary hover:bg-primary-600',
       secondary: 'bg-secondary hover:bg-secondary-600',
       success: 'bg-success hover:bg-success-600',

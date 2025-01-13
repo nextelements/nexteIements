@@ -10,7 +10,7 @@ export const IconLibrary = () => {
           {iconMap.map(({ name, svg }, index) => (
             <div key={index} className={cx(
               'grid grid-rows-2 grid-cols-1 gap-2 p-2 cursor-pointer items-center justify-center text-center rounded-md',
-              'transition-[.2s] hover:bg-default-100 border border-default-100'
+              'hover:bg-default-100 border dark:border-default-100 border-default-200'
               )}>
               <div className="flex justify-center pt-5">
                 <PrintIcon size={26} d={svg} />

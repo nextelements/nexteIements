@@ -8,7 +8,7 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/layout/**/*.{js,ts,jsx,tsx,mdx}",
-    '../../packages/**/*.{js,ts,jsx,tsx,mdx}'
+    '../../packages/{components,themes}/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {},
@@ -18,6 +18,13 @@ export default {
       prefix: 'reactify',
       themes: {
         light: {
+          custom: {
+            custom: {
+              custom: {
+                lol: 'black'
+              }
+            }
+          },
           layout: {
             background: '#fafafa',
             divider: '#e7e7e7',
@@ -55,7 +62,7 @@ export default {
             },
           },
           colors: {
-            muted: '#6b7280',
+            muted: '#828282',
             shadow: '#000000'
           },
         }

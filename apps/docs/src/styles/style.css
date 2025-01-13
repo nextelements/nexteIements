@@ -30,18 +30,18 @@
 body {
   background: hsl(var(--reactify-background));
   color: hsl(var(--reactify-color)); 
-  overflow-x: hidden;
   font-size: var(--defaultFontSize);
   font-family: var(--font-geist-sans);
+  overflow-x: hidden;
 }
 
 /* Headings */
-h1 { font-size: 2.5vmax; }
-h2 { font-size: 2.25vmax }
-h3 { font-size: 2vmax }
-h4 { font-size: 1.85vmax }
-h5 { font-size: 1.5vmax }
-h6 { font-size: 1.25vmax }
+h1 { font-size: 48px; }
+h2 { font-size: 42px; }
+h3 { font-size: 36px; }
+h4 { font-size: 30px; }
+h5 { font-size: 24px; }
+h6 { font-size: 18px; }
 
 /* Grid */
 .template-grid {
@@ -181,7 +181,7 @@ header {
               content: '';
               position: absolute;
               background: var(--link-active);
-              top: 50%; left: -11px;
+              top: 50%; left: -12px;
               transform: translateY(-50%);
               height: 50%;
               width: 3px;

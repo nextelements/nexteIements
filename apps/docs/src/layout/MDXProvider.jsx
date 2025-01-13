@@ -5,11 +5,14 @@ import { IconLibrary } from '@/components/IconLibrary';
 import { StepTree, StepTreeItem } from '@/components/StepTree';
 import { Code } from '@/components/Code';
 
+import { Button } from '@nextelements/components';
+
 const components = {
   h1: (props) => <h1 {...props} />,
   IconLibrary,
   StepTree,
   StepTreeItem,
+  Button,
   Code
 };
 

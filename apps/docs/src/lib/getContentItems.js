@@ -2,22 +2,26 @@ export const getContentItems = {
   introduction: [
     {
       title: 'Get Started',
-      href: '@/start'
+      href: '@/start',
+      tags: [],
     },
     {
       title: 'Configuration',
-      href: '@/configuration'
+      href: '@/configuration',
+      tags: [],
     },
     {
       title: 'Utilities',
       items: [
         {
           title: 'Hooks',
-          href: '@/hooks'
+          href: '@/hooks',
+          tags: [],
         },
         {
           title: 'Icons',
-          href: '@/icons'
+          href: '@/icons',
+          tags: [],
         },
       ]
     }
@@ -25,21 +29,30 @@ export const getContentItems = {
   customization: [
     {
       title: 'Colors',
-      href: '@/colors'
+      href: '@/colors',
+      tags: [],
     }
   ],
   components: [
     {
       title: 'Accordion',
-      href: '@/accordion'
+      href: '@/accordion',
+      tags: [],
     },
     {
       title: 'Alert',
-      href: '@/alert'
+      href: '@/alert',
+      tags: [],
     },
     {
       title: 'Avatar',
-      href: '@/avatar'
+      href: '@/avatar',
+      tags: [],
+    },
+    {
+      title: 'Button',
+      href: '@/button',
+      tags: [],
     }
   ]
 }
