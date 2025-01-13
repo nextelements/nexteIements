@@ -18,13 +18,6 @@ export default {
       prefix: 'reactify',
       themes: {
         light: {
-          custom: {
-            custom: {
-              custom: {
-                lol: 'black'
-              }
-            }
-          },
           layout: {
             background: '#fafafa',
             divider: '#e7e7e7',
@@ -32,8 +25,10 @@ export default {
             link: {
               DEFAULT: '#6b7280',
               hover: '#202327',
-              active: '#000000',
-              'active-light': '#f0f0f0'
+              active: {
+                DEFAULT: '#000000',
+                light: '#f0f0f0'
+              }
             },
             content: {
               1: '#ffffff',

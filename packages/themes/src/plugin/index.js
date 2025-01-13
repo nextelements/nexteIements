@@ -62,8 +62,10 @@ const resolveConfig = (
     }
   };
 
-  for (const [themeName, { colors, layout, custom, extend }] of Object.entries(themes)) {
+  for (const [themeName, themeProperties] of Object.entries(themes)) {
     const scheme = isDefaultTheme(themeName) ? themeName : extend;
+    const { extend, ...props } = themeProperties;
+
     let cssSelector = `.${themeName}:root, [data-theme="${themeName}"]:root`;
 
     if(themeName === defaultTheme) {
@@ -74,21 +76,14 @@ const resolveConfig = (
       'color-scheme': scheme 
     } || {};
 
-    const flattenColorObj = flattenObject(colors ? colors : {});
-    for (const [name, value] of Object.entries(flattenColorObj)) {
-      process(prefix, name, value, resolved, cssSelector);
-    }
-
-    const flattenLayoutObj = flattenObject(layout ? layout : {});
-    for (const [name, value] of Object.entries(flattenLayoutObj)) {
-      process(prefix, name, value, resolved, cssSelector);
-    } 
-
-    const flattenCustomObj = flattenObject(custom ? custom : {});
-    for (const [name, value] of Object.entries(flattenCustomObj)) {
-      process(prefix, name, value, resolved, cssSelector);
+    for (const [key, property] of Object.entries(props)) {
+      const flattenObj = flattenObject(property ? property : {});
+      for (const [name, value] of Object.entries(flattenObj)) {
+        process(prefix, name, value, resolved, cssSelector);
+      }
     }
   }
+  
   return resolved;
 };
 
