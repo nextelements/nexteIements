@@ -24,7 +24,7 @@ const resolveConfig = (
   const process = (prefix, itemName, itemValue, resolved, cssSelector) => {
     if (!itemValue) return;
     
-    const toVariable = (str) => str.replaceAll(/\.|-DEFAULT/g, (match) => match === '.' ? '-' : '');
+    const toVariable = (str) => str.replaceAll('.', '-').replaceAll('-DEFAULT', '')
 
     if (typeof itemValue === 'object' && !Array.isArray(itemValue)) {
       for (const [nestedItemName, nestedItemValue] of Object.entries(itemValue)) {
@@ -41,7 +41,7 @@ const resolveConfig = (
       const colorVariable = `--${prefix}-${color}`;
       const colorOpacityVariable = `${colorVariable}-o`;
       const [h, s, l, alpha] = parsedColor;
-  
+
       resolved.utilities[cssSelector][colorVariable] = `${h} ${s}% ${l}%`;
   
       if (typeof alpha === 'number') {

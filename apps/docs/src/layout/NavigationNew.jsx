@@ -8,14 +8,14 @@ import { usePathname } from 'next/navigation';
 import { cx } from '@nextelements/utilities';
 import Link from 'next/link';
 
-export const NavigationNew = () => {
+export const NavigationNew = ({ items }) => {
 
   const pathname = usePathname();
   const path = pathname.split('/').filter(Boolean)[0];
 
-  const [ content, setContent ] = useState(null);
-  const [ isActive, setActive ] = useState(pathname)
 
+
+  const [ isActive, setActive ] = useState(pathname)
   const stickyRef = useRef(null);
   const scrollRef = useRef(null);
 
@@ -44,41 +44,44 @@ export const NavigationNew = () => {
   }, []);
 
   useEffect(() => {
-    const fetchContent = async () => {
-      const response = await fetch('/api/nav');
-      if (!response.ok) {
-        throw new Error('Fehler beim Laden der Navigationsdaten');
-      }
-      const data = await response.json();
-      setContent(data)
-      console.log(data)
-    };
-    fetchContent();
-  }, []);
-
-  useEffect(() => {
     setActive(pathname)
   }, [ pathname ])
 
-  return content && (
-    <div>
-      {Object.entries(content).map(([ category, subcategories ]) => path == category && (
-        <div key={category}>
-          <h2>{category}</h2>
-          {Object.entries(subcategories).map(([subcategory, files]) => (
-            <div key={subcategory}>
-              <h3>{subcategory}</h3>
-              <ul>
-                {files.map((file) => (
-                  <li key={file.fileName}>
-                    <strong>{file.title}</strong> ({file.fileFullName})
-                  </li>
-                ))}
-              </ul>
+  return (
+    <nav ref={stickyRef} style={stickyStyle}>
+      <div ref={scrollRef} className="scroll">
+        {Object.entries(items).map(([ category, subcategories ]) => path == category && (
+          <div key={category} className="navigation-item">
+            <div className="title">{capitalize(category)}</div>
+            <div className="items">
+              {Object.entries(subcategories).map(([subcategory, files]) => (
+                <div key={subcategory}>
+                  {
+                    subcategory != 'default' && <div className="title">{capitalize(subcategory)}</div>
+                  }
+                  <div className="items">
+                    <ul>
+                      {files.map((file) => (
+                        <li key={file.fileName}>
+                          {console.log(file.slug.path, file.slug.page, pathname)
+}
+                          <Link 
+                            href={file.slug.href}
+                            onClick={() => setActive(file.slug.href)}
+                            className={cx(isActive == file.slug.href && 'active')}
+                          >
+                            {file.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      ))}
-    </div>
+          </div>
+        ))}
+      </div>
+    </nav>
   );
 };

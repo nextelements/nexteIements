@@ -4,10 +4,10 @@ import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXProvider } from '@/layout/MDXProvider'
 
-async function getMDXContent(category, slug) {
+async function getMDXContent(category, slug, subslug) {
   const dir = path.join(process.cwd(), 'src/content')
   const errorPath = path.join(dir, '404', `error.mdx`)
-  let filePath = path.join(dir, category, `${slug}.mdx`)
+  let filePath = path.join(dir, category, slug, `${subslug}.mdx`)
 
   if (!fs.existsSync(filePath)) {
     filePath = errorPath
@@ -24,8 +24,8 @@ async function getMDXContent(category, slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const { category, slug } = await params
-  const { frontMatter } = await getMDXContent(category, slug)
+  const { category, slug, subslug } = await params
+  const { frontMatter } = await getMDXContent(category, slug, subslug)
 
   return {
     title: `Documentation - ${frontMatter.title || '404'}`,
@@ -33,8 +33,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function DynamicMDXCategoryPage({ params }) {
-  const { category, slug } = await params
-  const { mdxSource, frontMatter } = await getMDXContent(category, slug)
+  const { category, slug, subslug } = await params
+  const { mdxSource, frontMatter } = await getMDXContent(category, slug, subslug)
 
   return <MDXProvider data={frontMatter} mdxSource={mdxSource} />
 }

@@ -6,7 +6,7 @@ import { cx } from '@nextelements/utilities'
 export const IconLibrary = () => {
   return (
     <>
-      <div className="grid grid-cols-5 grid-rows-[auto] gap-[1em]">
+      <div className="grid grid-cols-7 grid-rows-[auto] gap-[1em]">
           {iconMap.map(({ name, svg }, index) => (
             <div key={index} className={cx(
               'grid grid-rows-2 grid-cols-1 gap-2 p-2 cursor-pointer items-center justify-center text-center rounded-md',

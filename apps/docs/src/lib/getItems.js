@@ -1,9 +1,8 @@
-// src/app/api/content/route.js
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-export const GET = async () => {
+export const getItems = () => {
   const directoryPath = path.join(process.cwd(), 'src/content');
   const result = {};
 
@@ -19,7 +18,8 @@ export const GET = async () => {
     const parts = relativePath.split('/');
     const fileFullName = parts.at(-1); // Last element
     const fileName = fileFullName?.replace('.mdx', '');
-    const fileDir = `./${parts[1]}/`;
+    const fileDir = `/${parts[1]}`;
+    const subFilePath = subcategory === 'default' ? fileDir + '/' + fileName : fileDir + '/' + subcategory + '/' + fileName
 
     const entry = {
       order: data.order || 999,
@@ -36,7 +36,8 @@ export const GET = async () => {
       slug: {
         path: fileDir,
         page: fileName,
-        getPathname: () => fileDir + fileName,
+        full: fileDir + '/' + fileName,
+        href: subFilePath
       },
       ...data,
     };
@@ -79,6 +80,5 @@ export const GET = async () => {
     console.error('Error reading directory:', error);
   }
 
-  // Rückgabe der gesammelten Daten als JSON
-  return new Response(JSON.stringify(result), { status: 200 });
+  return result;
 };
