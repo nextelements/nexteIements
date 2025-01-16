@@ -48,9 +48,11 @@ export const ThemeProvider = ({
     localStorage.setItem('theme', theme)
   }, [ initialTheme, theme ])
 
+  if(!isClient) return null
+
   return (
     <ThemeContext.Provider value={{ themes, theme, setTheme }}>
-      {isClient && children}
+      {children}
     </ThemeContext.Provider>
   )
 }

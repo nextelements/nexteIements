@@ -1,26 +1,25 @@
-'use client';
+'use client'
 
 import { ThemeToggle } from '@nextelements/themes'
 import { useEffect, useRef, useState } from 'react';
 import { useSticky, useScroll } from '@nextelements/hooks';
 import { capitalize } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import { cx } from '@nextelements/utilities';
+import Link from 'next/link';
 
-const Navigation = ({ items }) => {
+export const Navigation = ({ items }) => {
+
   const pathname = usePathname();
-  const category = pathname.split('/').filter(Boolean)[0];
+  const path = pathname.split('/').filter(Boolean)[0];
 
+  const [ isActive, setActive ] = useState(pathname)
   const stickyRef = useRef(null);
   const scrollRef = useRef(null);
 
-  const { stickyStyle } = useSticky(stickyRef);
-  
-  const [ isActive, setActive ] = useState(pathname)
+  const { stickyStyle } = useSticky(stickyRef)
 
   const updateScrollHeight = () => {
-
     const headerHeight = document.querySelector('.header')?.clientHeight || 0;
     const changeThemeHeight = document.querySelector('.nav-box')?.offsetHeight || 0;
     
@@ -42,64 +41,43 @@ const Navigation = ({ items }) => {
     };
   }, []);
 
-  const filteredItems = items[category] || [];
-
-  const exportPath = (s) => s.replace('@', `/${category}`)
-
   useEffect(() => {
     setActive(pathname)
   }, [ pathname ])
 
-  const renderItems = () => 
-    filteredItems.map((item, index) => (
-      <div key={index} className="navigation-item">
-        {!item.items ? (
-          <li>
-            <Link 
-              href={exportPath(item.href)}
-              onClick={() => setActive(exportPath(item.href))}
-              className={cx(isActive == exportPath(item.href) && 'active')}
-              >
-                {item.title}
-            </Link>
-          </li>
-        ) : (
-          <>
-            <li className="title">{item.title}</li>
-            <ul>{renderSubItems(item.items)}</ul>
-          </>
-        )}
-      </div>
-    ))
-
-  const renderSubItems = (items) =>
-    items.map((item, index) => (
-      <li key={index}>
-        <Link 
-          href={exportPath(item.href)}
-          className={cx(isActive == exportPath(item.href) && 'active')}
-          onClick={() => setActive(exportPath(item.href))}
-          >
-            {item.title}
-        </Link>
-      </li>
-    ));
-
   return (
-    <nav
-      ref={stickyRef}
-      style={stickyStyle}
-    >
-      <div className="scroll" ref={scrollRef}>
-        <div className="title">{capitalize(category)}</div>
-        <div className="items">{renderItems()}</div>
-      </div>
-
-      <div className="nav-box">
-        <ThemeToggle />
+    <nav ref={stickyRef} style={stickyStyle}>
+      <div ref={scrollRef} className="scroll">
+        {Object.entries(items).map(([ category, subcategories ]) => path == category && (
+          <div key={category} className="navigation-item">
+            <div className="title">{capitalize(category)}</div>
+            <div className="items">
+              {Object.entries(subcategories).map(([subcategory, files]) => (
+                <div key={subcategory}>
+                  {
+                    subcategory != 'default' && <div className="title">{capitalize(subcategory)}</div>
+                  }
+                  <div className="items">
+                    <ul>
+                      {files.map((file) => (
+                        <li key={file.fileName}>
+                          <Link 
+                            href={file.slug.href}
+                            onClick={() => setActive(file.slug.href)}
+                            className={cx(isActive == file.slug.href && 'active')}
+                          >
+                            {file.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </nav>
-  );
+  )
 };
-
-export { Navigation };

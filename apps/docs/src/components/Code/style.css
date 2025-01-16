@@ -1,4 +1,6 @@
-.code {
+.code,
+.language-js,
+.language-jsx {
   font-family: var(--font-geist-mono);
   padding: 1em;
   display: block;

@@ -2,19 +2,29 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+let cachedItems = null; // Caching-Objekt für die Items
+
 export const getItems = () => {
+
+  if (cachedItems) {
+    return cachedItems;
+  }
+
   const directoryPath = path.join(process.cwd(), 'src/content');
   const result = {};
 
   // Verarbeitet jede MDX-Datei
   const processFile = (filePath, category, subcategory) => {
-    if (!filePath.endsWith('.mdx') || filePath.endsWith('index.mdx')) return;
-
+    if (!filePath.endsWith('.mdx')) return;
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data } = matter(fileContent);
 
     const relativePath = filePath.replace(directoryPath, '');
     const sourcePath = filePath.replace(process.cwd(), '');
+  
+    if(sourcePath.split('/')[4].endsWith('index.mdx')) {
+      return false
+    }
     const parts = relativePath.split('/');
     const fileFullName = parts.at(-1); // Last element
     const fileName = fileFullName?.replace('.mdx', '');
@@ -25,12 +35,10 @@ export const getItems = () => {
       order: data.order || 999,
       fileName,
       fileFullName,
-      filePath: fileDir,
       fileFullPath: relativePath,
       fileSourcePath: sourcePath,
-      origin: parts[1],
-      extend: data.extend,
       title: data.title || 'Untitled',
+      href: subFilePath,
       category,
       subcategory,
       slug: {
@@ -80,5 +88,8 @@ export const getItems = () => {
     console.error('Error reading directory:', error);
   }
 
-  return result;
+  // Speichert die verarbeiteten Daten im Cache
+  cachedItems = result;
+
+  return cachedItems;
 };

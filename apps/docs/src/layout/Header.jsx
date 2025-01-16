@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Wrapper } from './Wrapper';
-import { Logo } from './Logo';
 import { cx } from '@nextelements/utilities';
+import { UnresolveIcon } from '@nextelements/icons';
 import Link from 'next/link';
 
 const Header = ({ items }) => {
@@ -14,7 +14,11 @@ const Header = ({ items }) => {
   return (
     <header>
       <Wrapper>
-        <Logo />
+        <div className="flex items-center gap-1">
+          <UnresolveIcon className="inline-block" />
+          <p className="text-[110%] font-semibold"></p>
+          {/* resolve.ui */}
+        </div>
         <nav>
           {items.map(({ title, href }) => {
             return (

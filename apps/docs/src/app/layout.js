@@ -16,8 +16,8 @@ const inter = Inter({
 });
 
 import { Layout } from '@/layout';
-
-export default function RootLayout({ children }) {
+ 
+export default function Root({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>

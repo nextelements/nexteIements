@@ -1,7 +1,9 @@
+import { Children } from 'react'
+
 const Content = ({ children }) => {
   return (
     <section className="content">
-      { children || 'Container' }
+      { children }
     </section>
   )
 }

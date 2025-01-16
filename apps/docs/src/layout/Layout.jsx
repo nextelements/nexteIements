@@ -1,15 +1,10 @@
 import { ThemeProvider } from '@nextelements/themes'
-import { Content, ContentNav, Main, Footer, Header, Navigation, Wrapper } from '.'
+import { Content, ContentNav, Main, Footer, Header, Navigation, Wrapper, Sidebar } from '.'
 
-import { getContentItems } from '@/lib/getContentItems'
 import { getHeaderItems } from '@/lib/getHeaderItems'
-import { NavigationNew } from './NavigationNew'
-
 import { getItems } from '@/lib/getItems';
 
-const testnewnav = true
-
-const Layout = (props) => {  
+const Layout = ({ children }) => {  
 
   const items = getItems()
 
@@ -19,11 +14,14 @@ const Layout = (props) => {
         <Header items={getHeaderItems} />
         <Wrapper>
           <Main>
-            {testnewnav ? <NavigationNew items={items} /> : <Navigation items={getContentItems} />}
+            <Navigation items={items} />
             <Content>
-              { props.children }
-              <ContentNav items={getContentItems} />
+              <div>{ children }</div>
+              <ContentNav items={items} />
             </Content>
+            <Sidebar>
+              Table of Contents
+            </Sidebar>
           </Main>
         </Wrapper>
         <Footer />
