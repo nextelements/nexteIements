@@ -1,5 +1,5 @@
 const withMDX = require('@next/mdx')({
-  extension: /\.mdx$/,
+  extension: /\.mdx?$/,
 });
 
 module.exports = withMDX({
@@ -17,7 +17,7 @@ module.exports = withMDX({
       {
         source: '/',
         destination: '/introduction',
-        permanent: true,
+        permanent: false,
       },
     ];
   },

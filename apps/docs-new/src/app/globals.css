@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5f5fc;
+  --foreground: #0a0a0b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0b;
+    --foreground: #ececf3;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 250%;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 200%;
+  font-weight: 600;
+}
+
+p {
+  display: block;
+  margin: 1em 0;
+}

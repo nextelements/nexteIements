@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useSticky, useScroll } from '@nextelements/hooks';
+import { TableOfContents } from '@/components/TableOfContents';
 
-export const Sidebar = ({ headings }) => {
+export const Sidebar = () => {
 
   const stickyRef = useRef(null);
   const scrollRef = useRef(null);
@@ -34,7 +35,7 @@ export const Sidebar = ({ headings }) => {
   return (
     <nav ref={stickyRef} style={stickyStyle}>
       <div ref={scrollRef} className="scroll">
-        <b>On this page</b>
+        <TableOfContents />
       </div>
     </nav>
   )

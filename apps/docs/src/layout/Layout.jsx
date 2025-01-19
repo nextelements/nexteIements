@@ -19,9 +19,7 @@ const Layout = ({ children }) => {
               <div>{ children }</div>
               <ContentNav items={items} />
             </Content>
-            <Sidebar>
-              Table of Contents
-            </Sidebar>
+            <Sidebar />
           </Main>
         </Wrapper>
         <Footer />
