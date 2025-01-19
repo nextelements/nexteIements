@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is the newes docs version
 
-## Getting Started
+![navigation](https://github.com/nextelements/nexteIements/blob/master/apps/navigation/nav.png)
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```json
+[
+  {
+    "order": 1,
+    "type": "folder",
+    "title": "Introduction",
+    "isInvisible": false,
+    "items": [
+      {
+        "type": "file",
+        "order": 1.11,
+        "title": "Get Started",
+        "href": "/docs/introduction"
+      },
+      {
+        "type": "file",
+        "order": 1.12,
+        "title": "Installation",
+        "href": "/docs/introduction/installation"
+      }
+    ]
+  },
+  {
+    "order": 2,
+    "type": "folder",
+    "title": "Customization",
+    "isInvisible": false,
+    "items": [
+      {
+        "type": "file",
+        "order": 2.11,
+        "title": "Colors",
+        "href": "/docs/customization/colors"
+      },
+      {
+        "type": "file",
+        "order": 2.21,
+        "title": "Theme",
+        "href": "/docs/customization/theme"
+      }
+    ]
+  },
+  {
+    "order": 4,
+    "type": "folder",
+    "title": "Components",
+    "isInvisible": false,
+    "items": []
+  },
+  {
+    "order": 5,
+    "type": "folder",
+    "title": "Hooks",
+    "isInvisible": false,
+    "items": [
+      {
+        "type": "file",
+        "order": 5.1,
+        "title": "useExample 1",
+        "href": "/docs/hooks/useExample1"
+      },
+      {
+        "type": "file",
+        "order": 5.2,
+        "title": "useExample 2",
+        "href": "/docs/hooks/useExample2"
+      }
+    ]
+  },
+  {
+    "order": 6,
+    "type": "folder",
+    "title": "Deep Menu",
+    "isInvisible": false,
+    "items": [
+      {
+        "order": "6.1",
+        "type": "folder",
+        "title": "Deeper",
+        "isInvisible": false,
+        "items": [
+          {
+            "order": "6.2",
+            "type": "folder",
+            "title": "Deepest",
+            "isInvisible": false,
+            "items": [
+              {
+                "type": "file",
+                "order": 6.21,
+                "title": "So fucking deep",
+                "href": "/docs/deep-menu/deeper/deepest"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "order": 7,
+    "type": "folder",
+    "title": "Case Ignore",
+    "isInvisible": false,
+    "items": [
+      {
+        "type": "file",
+        "order": 7.1,
+        "title": "Case Ignore",
+        "href": "/docs/case-ignore"
+      }
+    ]
+  }
+]
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -37,15 +37,11 @@ export const createStructure = (dir = path.join(process.cwd(), 'content')) => {
       const { data } = content ? matter(content) : {};
 
       const mainDirectory = sourcePath.split('/').slice(1).at(-1);
-      let currentOrder = -1;
+
+      let currentOrder = undefined;
       if (hasOrderPrefix(mainDirectory)) {
         currentOrder = getOrderPrefix(mainDirectory);
-      } else {
-        currentOrder = isFile(sourcePath)
-          ? currentItemOrder
-          : incrementDecimal(currentItemOrder);
       }
-      currentItemOrder = currentOrder;
 
       if (stat.isDirectory()) {
         const items = createStructure(processPath);
@@ -58,7 +54,6 @@ export const createStructure = (dir = path.join(process.cwd(), 'content')) => {
             order: currentOrder,
             type: 'folder',
             title: toProperCase(fileName),
-            isInvisible: inBrackets,
             items,
           });
         }
@@ -72,7 +67,7 @@ export const createStructure = (dir = path.join(process.cwd(), 'content')) => {
 
         result.push({
           type: 'file',
-          order: versionToFloat(`${currentOrder}.${data.order || currentFileOrder}`),
+          order: data?.order || -1,
           title: data.title || toProperCase(fileName),
           href: `/${path.join('docs', computedSlug(newSlug))}`,
         });
@@ -86,20 +81,17 @@ export const createStructure = (dir = path.join(process.cwd(), 'content')) => {
 
   const sortedResult = sortItems(result);
 
+  console.log(JSON.stringify(sortedResult, null, 2))
+
   return sortedResult;
 };
 
-const sortItems = (items) => {
+const sortItems = (items, reverse) => {
   return items
     .map((item) => {
       if (item.items && item.items.length > 0) {
-        item.items = sortItems(item.items); // Sortiere Unterelemente
+        item.items = sortItems(item.items, true); // Sortiere Unterelemente
       }
       return item;
-    }).sort((a, b) => a.order - b.order)
-};
-
-const versionToFloat = (version) => {
-  const [major, minor, patch] = version.split('.').map(Number);
-  return parseFloat(`${major}.${minor}${patch}`);
+    }).sort((a, b) => !reverse ? a.order - b.order : b.order - a.order)
 };
