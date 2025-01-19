@@ -11,15 +11,15 @@ This is the newes docs version
     "items": [
       {
         "type": "file",
-        "order": 1.11,
-        "title": "Get Started",
-        "href": "/docs/introduction"
+        "order": 2,
+        "title": "Installation",
+        "href": "/docs/introduction/installation"
       },
       {
         "type": "file",
-        "order": 1.12,
-        "title": "Installation",
-        "href": "/docs/introduction/installation"
+        "order": 1,
+        "title": "Get Started",
+        "href": "/docs/introduction"
       }
     ]
   },
@@ -30,62 +30,72 @@ This is the newes docs version
     "items": [
       {
         "type": "file",
-        "order": 2.11,
+        "order": 1,
+        "title": "Penis",
+        "href": "/docs/customization/penis"
+      },
+      {
+        "type": "file",
+        "order": -1,
         "title": "Colors",
         "href": "/docs/customization/colors"
       },
       {
         "type": "file",
-        "order": 2.21,
+        "order": -1,
         "title": "Theme",
         "href": "/docs/customization/theme"
       }
     ]
   },
   {
-    "order": 4,
+    "order": 3,
     "type": "folder",
     "title": "Components",
-    "items": []
+    "items": [
+      {
+        "type": "file",
+        "order": -1,
+        "title": "Accordion",
+        "href": "/docs/components/accordion"
+      }
+    ]
   },
   {
-    "order": 5,
+    "order": 4,
     "type": "folder",
     "title": "Hooks",
     "items": [
       {
         "type": "file",
-        "order": 5.1,
+        "order": -1,
         "title": "useExample 1",
         "href": "/docs/hooks/useExample1"
       },
       {
         "type": "file",
-        "order": 5.2,
+        "order": -1,
         "title": "useExample 2",
         "href": "/docs/hooks/useExample2"
       }
     ]
   },
   {
-    "order": 6,
+    "order": 5,
     "type": "folder",
     "title": "Deep Menu",
-    "isInvisible": false,
     "items": [
       {
-        "order": "6.1",
         "type": "folder",
         "title": "Deeper",
         "items": [
           {
-            "order": "6.2",
             "type": "folder",
             "title": "Deepest",
             "items": [
               {
                 "type": "file",
-                "order": 6.21,
+                "order": -1,
                 "title": "So fucking deep",
                 "href": "/docs/deep-menu/deeper/deepest"
               }
@@ -96,18 +106,21 @@ This is the newes docs version
     ]
   },
   {
-    "order": 7,
+    "order": 6,
     "type": "folder",
     "title": "Case Ignore",
-    "isInvisible": false,
     "items": [
       {
         "type": "file",
-        "order": 7.1,
+        "order": -1,
         "title": "Case Ignore",
         "href": "/docs/case-ignore"
       }
     ]
   }
 ]
+```
+
+```todo
+Nacigation (order) erweitern auf unterverzeichnisse
 ```
