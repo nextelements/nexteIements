@@ -8,7 +8,6 @@ This is the newes docs version
     "order": 1,
     "type": "folder",
     "title": "Introduction",
-    "isInvisible": false,
     "items": [
       {
         "type": "file",
@@ -28,7 +27,6 @@ This is the newes docs version
     "order": 2,
     "type": "folder",
     "title": "Customization",
-    "isInvisible": false,
     "items": [
       {
         "type": "file",
@@ -48,14 +46,12 @@ This is the newes docs version
     "order": 4,
     "type": "folder",
     "title": "Components",
-    "isInvisible": false,
     "items": []
   },
   {
     "order": 5,
     "type": "folder",
     "title": "Hooks",
-    "isInvisible": false,
     "items": [
       {
         "type": "file",
@@ -81,13 +77,11 @@ This is the newes docs version
         "order": "6.1",
         "type": "folder",
         "title": "Deeper",
-        "isInvisible": false,
         "items": [
           {
             "order": "6.2",
             "type": "folder",
             "title": "Deepest",
-            "isInvisible": false,
             "items": [
               {
                 "type": "file",

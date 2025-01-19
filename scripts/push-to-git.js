@@ -15,7 +15,7 @@ const UNDERLINE = '\033[4m';
 execSync('git pull origin master');
 
 // Fetch the latest changes from the repository
-// execSync('git fetch origin');
+execSync('git fetch origin');
 
 // Get commit message and branch name from arguments or use default
 const commitMessage = process.argv[2] || 'Initial Commit';
