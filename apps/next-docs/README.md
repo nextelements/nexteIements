@@ -142,17 +142,17 @@
 ]
 ```
 
-Edit the order by creating a `directory.json` in the contents directory:
+Edit the order by creating a `directory.json` in the main directory for example:
 ```json
-// contents/2-customization/directory.json
+// contents/directory.json
 {
-  "colors": {
+  "introduction": {
     "order": 1
   },
-  "theming": {
+  "customization": {
     "order": 2
   },
-  "advanced": {
+  "hooks": {
     "order": 3
   }
 }
