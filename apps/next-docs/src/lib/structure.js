@@ -22,7 +22,7 @@ export const createStructure = function createStructure (directory = path.join(p
       const settings = getSettings(processPath)
 
       const segments = processPath.replace(process.cwd(), '').split('/').slice(2).join('/')
-      const href = removeExtension(cleanPath(segments))
+      const href = createClientPath(segments)
 
       if(settings) {
         Object.keys(settings).forEach((key) => {
@@ -56,7 +56,9 @@ export const createStructure = function createStructure (directory = path.join(p
           order: undefined,
           type: 'file',
           title: data?.title || filename,
-          href
+          href: href.endsWith('/') 
+            ? href.slice(0, -1)
+            : href
         })
       }
     })
@@ -76,8 +78,8 @@ function getSettings (path)  {
   return null
 }
 
-function cleanPath (_path) {
-  return path.join(basePath, _path.replace(/^(\d+(\.\d+)?)-?/, '').replace(/\[([^\]]+)\]|\(([^\)]+)\)/, "$1"))?.slice(0, -1)
+function createClientPath (_path) {
+  return removeExtension(basePath + '/' + _path.replace(/^(\d+(\.\d+)?)-?/, '').replace(/\[([^\]]+)\]|\(([^\)]+)\)/, "$1"))?.toLowerCase()
 }
 
 function cleanFileName (file) {

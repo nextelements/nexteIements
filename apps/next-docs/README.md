@@ -7,11 +7,13 @@
       "items": [
          {
             "type": "file",
-            "title": "Installation"
+            "title": "Installation",
+            "href": "docs/introduction/installation"
          },
          {
             "type": "file",
-            "title": "Introduction"
+            "title": "Introduction",
+            "href": "docs/introduction"
          }
       ]
    },
@@ -22,11 +24,13 @@
       "items": [
          {
             "type": "file",
-            "title": "Colors"
+            "title": "Colors",
+            "href": "docs/customization/colors"
          },
          {
             "type": "file",
-            "title": "Theming"
+            "title": "Theming",
+            "href": "docs/customization/theming"
          },
          {
             "order": 3,
@@ -36,7 +40,8 @@
             "items": [
                {
                   "type": "file",
-                  "title": "Advanced"
+                  "title": "Advanced",
+                  "href": "docs/customization/advanced"
                }
             ]
          }
@@ -54,17 +59,20 @@
             "items": [
                {
                   "type": "file",
-                  "title": "Hook Dir"
+                  "title": "Hook Dir",
+                  "href": "docs/hooks/hook-dir"
                }
             ]
          },
          {
             "type": "file",
-            "title": "useHook1"
+            "title": "useHook1",
+            "href": "docs/hooks/usehook1"
          },
          {
             "type": "file",
-            "title": "useHook2"
+            "title": "useHook2",
+            "href": "docs/hooks/usehook2"
          }
       ]
    },
@@ -85,7 +93,8 @@
                   "items": [
                      {
                         "type": "file",
-                        "title": "Deepest Menü"
+                        "title": "Deepest Menü",
+                        "href": "docs/deep-menu/deeper/deepest"
                      }
                   ]
                }
@@ -113,19 +122,38 @@
             "items": [
                {
                   "type": "file",
-                  "title": "Gay 2"
+                  "title": "Gay 2",
+                  "href": "docs/ignore-case/dir2/gay2"
                },
                {
                   "type": "file",
-                  "title": "Gay 1"
+                  "title": "Gay 1",
+                  "href": "docs/ignore-case/dir2/gay"
                }
             ]
          },
          {
             "type": "file",
-            "title": "Ignore Case"
+            "title": "Ignore Case",
+            "href": "docs/ignore-case"
          }
       ]
    }
 ]
+```
+
+Edit the order by creating a `directory.json` in the contents directory:
+```json
+// contents/2-customization/directory.json
+{
+  "colors": {
+    "order": 1
+  },
+  "theming": {
+    "order": 2
+  },
+  "advanced": {
+    "order": 3
+  }
+}
 ```
