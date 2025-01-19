@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```json
+[
+   {
+      "type": "folder",
+      "dirname": "introduction",
+      "title": "introduction",
+      "items": [
+         {
+            "type": "file",
+            "title": "Installation"
+         },
+         {
+            "type": "file",
+            "title": "Introduction"
+         }
+      ]
+   },
+   {
+      "type": "folder",
+      "dirname": "customization",
+      "title": "customization",
+      "items": [
+         {
+            "type": "file",
+            "title": "Colors"
+         },
+         {
+            "type": "file",
+            "title": "Theming"
+         },
+         {
+            "order": 3,
+            "type": "folder",
+            "dirname": "advanced",
+            "title": "advanced",
+            "items": [
+               {
+                  "type": "file",
+                  "title": "Advanced"
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "type": "folder",
+      "dirname": "hooks",
+      "title": "hooks",
+      "items": [
+         {
+            "type": "folder",
+            "dirname": "hook-dir",
+            "title": "hook-dir",
+            "items": [
+               {
+                  "type": "file",
+                  "title": "Hook Dir"
+               }
+            ]
+         },
+         {
+            "type": "file",
+            "title": "useHook1"
+         },
+         {
+            "type": "file",
+            "title": "useHook2"
+         }
+      ]
+   },
+   {
+      "type": "folder",
+      "dirname": "deep-menu",
+      "title": "deep-menu",
+      "items": [
+         {
+            "type": "folder",
+            "dirname": "deeper",
+            "title": "deeper",
+            "items": [
+               {
+                  "type": "folder",
+                  "dirname": "deepest",
+                  "title": "deepest",
+                  "items": [
+                     {
+                        "type": "file",
+                        "title": "Deepest Menü"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "type": "folder",
+      "dirname": "ignore-case",
+      "title": "ignore-case",
+      "items": [
+         {
+            "order": 1,
+            "type": "folder",
+            "dirname": "dir1",
+            "title": "dir1",
+            "items": []
+         },
+         {
+            "order": 2,
+            "type": "folder",
+            "dirname": "dir2",
+            "title": "dir2",
+            "items": [
+               {
+                  "type": "file",
+                  "title": "Gay 2"
+               },
+               {
+                  "type": "file",
+                  "title": "Gay 1"
+               }
+            ]
+         },
+         {
+            "type": "file",
+            "title": "Ignore Case"
+         }
+      ]
+   }
+]
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
