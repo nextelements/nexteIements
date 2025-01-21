@@ -25,7 +25,7 @@ const NavigationItems = ({ item }) => {
 
   return (
     <li>
-      {item.type === 'folder' && !item.isInvisible && (
+      {item.type === 'folder' && (
         <div className="mb-2">
           <button onClick={toggleAccordion} className={
             twMerge(

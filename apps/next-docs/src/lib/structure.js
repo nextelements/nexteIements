@@ -1,18 +1,12 @@
-/**
- * todo: remove 1-introducation, 2-customizations to introduction, customization with directory.json in contents-root directory
- */
-
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-
-export const sourcePaths = new Map()
 
 const basePath = 'docs'
 const contentPath = 'contents'
 const settingsFileName = 'directory.json'
 
-export const processStructure = function processStructure (directory = path.join(process.cwd(), contentPath)) {
+const processStructure = function processStructure (directory = path.join(process.cwd(), contentPath)) {
   const result = []
 
   try {
@@ -40,7 +34,6 @@ export const processStructure = function processStructure (directory = path.join
             type: 'folder',
             folder: cleanFileName(file),
             title: filename, // groß
-            path: `${href}/`,
             items,
           })
         }
@@ -54,7 +47,7 @@ export const processStructure = function processStructure (directory = path.join
             ? `/${href.slice(0, -1)}`
             : `/${href}`
         })
-        sourcePaths.set(href, processPath)
+        fileMappings.set(href, processPath)
       } else {
         result.push({
           type: 'json',
@@ -91,8 +84,7 @@ export function createStructure () {
       });
     })(items);
 
-    // rekursive Verarbeitung der settings
-    const processConfig = (items = []) => {
+    const processConfig = (items) => {
       if (!Array.isArray(items)) {
         console.error('processConfig: Expected an array, but got', items);
         return [];
@@ -108,7 +100,6 @@ export function createStructure () {
                 folderItem.order = item[key]?.order || Number.MAX_SAFE_INTEGER;
                 folderItem.title = item[key]?.title || folderItem.title;
               }
-              // Rekursive Anwendung für Unterordner
               if (Array.isArray(folderItem.items) && folderItem.items.length > 0) {
                 processConfig(folderItem.items);
               }
@@ -124,13 +115,15 @@ export function createStructure () {
       return items.sort((a,b) => a.order - b.order);
     };
     
-    return processConfig(items); // Hier items übergeben
+    return processConfig(items);
   };
 
   const result = mergeConfig(items);
   const sortedResult = result.sort((a, b) => (a.order || Number.MAX_SAFE_INTEGER) - (b.order || Number.MAX_SAFE_INTEGER));
   return sortedResult
 }
+
+export const fileMappings = new Map()
 
 function getSettings (path)  {
   if(path.includes(`${settingsFileName}`)) {
@@ -141,11 +134,11 @@ function getSettings (path)  {
 }
 
 function createClientPath (path) {
-  return basePath + '/' + path.replace(process.cwd(), '').split('/').slice(2).join('/').replace(/\[([^\]]+)\]|\(([^\)]+)\)/, "$1").replace(/\/index\.mdx$/, '/').replace(/\.mdx/g, '').toLowerCase()
+  return basePath + '/' + path.replace(process.cwd(), '').split('/').slice(2).join('/').replace(/\[([^\]]+)\]|\(([^\)]+)\)/, "$1").replace(/\/index\.mdx$/, '/').replace(/\.mdx/g, '').replace(/^(\d+(\.\d+)?)-?/g, '').toLowerCase()
 }
 
 function cleanFileName (file) {
-  return file.replace('.mdx', '').replace(/^(\d+(\.\d+)?)-?/, '').toLowerCase()
+  return file.replace('.mdx', '').replace(/^(\d+(\.\d+)?)-?/g, '').toLowerCase()
 }
 
 function getFrontmatter (path) {
