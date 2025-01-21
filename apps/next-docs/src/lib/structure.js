@@ -47,10 +47,12 @@ export const processStructure = function processStructure (directory = path.join
       } else if(!isJSONFile(processPath)) {
          result.push({
           type: 'file',
+          file: filename,
           title: data?.title || filename, // groß
+          matter: data,
           href: href.endsWith('/') 
-            ? href.slice(0, -1)
-            : href
+            ? `/${href.slice(0, -1)}`
+            : `/${href}`
         })
         sourcePaths.set(href, processPath)
       } else {
@@ -113,8 +115,13 @@ export function createStructure () {
             });
           });
         });
+        items.forEach((item) => {
+          if(item.type === 'file') {
+            item.order = item.matter?.order
+          }
+        })
       }
-      return items;
+      return items.sort((a,b) => a.order - b.order);
     };
     
     return processConfig(items); // Hier items übergeben
@@ -122,7 +129,6 @@ export function createStructure () {
 
   const result = mergeConfig(items);
   const sortedResult = result.sort((a, b) => (a.order || Number.MAX_SAFE_INTEGER) - (b.order || Number.MAX_SAFE_INTEGER));
-  console.log(JSON.stringify(sortedResult, null, 3))
   return sortedResult
 }
 
