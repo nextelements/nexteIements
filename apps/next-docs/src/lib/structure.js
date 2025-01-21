@@ -1,14 +1,18 @@
+/**
+ * todo: remove 1-introducation, 2-customizations to introduction, customization with directory.json in contents-root directory
+ */
+
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import config from '../config/docs.config'
 
-export const storage = new Map()
+export const sourcePaths = new Map()
 
 const basePath = 'docs'
 const contentPath = 'contents'
+const settingsFileName = 'directory.json'
 
-export const createStructure = function createStructure (directory = path.join(process.cwd(), contentPath)) {
+export const processStructure = function processStructure (directory = path.join(process.cwd(), contentPath)) {
   const result = []
 
   try {
@@ -19,23 +23,12 @@ export const createStructure = function createStructure (directory = path.join(p
       const data = getFrontmatter(processPath)
       const stat = fs.statSync(processPath)
       const filename = cleanFileName(file)
-      const settings = getSettings(processPath)
 
-      const segments = processPath.replace(process.cwd(), '').split('/').slice(2).join('/')
-      const href = createClientPath(segments)
+      const href = createClientPath(processPath)
 
-      if(settings) {
-        Object.keys(settings).forEach((key) => {
-          result.filter((a) => a?.dirname?.toLowerCase() == key.toLowerCase()).map((item) => {
-            item.order = settings[key]?.order
-            return item
-          })
-        })
-      }
+      if(stat.isDirectory()) {
 
-      if (stat.isDirectory()) {
-        // dir
-        const items = createStructure(processPath)
+        const items = processStructure(processPath)
         const inBrackets = /\[.*?\]|\(.*?\)/.test(filename);
 
         if(inBrackets) {
@@ -44,42 +37,105 @@ export const createStructure = function createStructure (directory = path.join(p
           )
         } else {
           result.push({
-            order: undefined,
             type: 'folder',
-            dirname: cleanFileName(file),
-            title: filename,
-            items
+            folder: cleanFileName(file),
+            title: filename, // groß
+            path: `${href}/`,
+            items,
           })
         }
       } else if(!isJSONFile(processPath)) {
          result.push({
-          order: undefined,
           type: 'file',
-          title: data?.title || filename,
+          title: data?.title || filename, // groß
           href: href.endsWith('/') 
             ? href.slice(0, -1)
             : href
+        })
+        sourcePaths.set(href, processPath)
+      } else {
+        result.push({
+          type: 'json',
+          source: processPath,
+          order: Infinity
         })
       }
     })
   } catch (e) {
     console.error(e)
   }
-  const sortedResult = result.sort((a, b) => a.order - b.order)
+
+  return result
+}
+
+export function createStructure () {
+  const items = processStructure();
+  const config = [];
+
+  config.push(
+    items.find((prop) => prop.type === 'json')
+  );
+
+  const mergeConfig = (items) => {
+    (function recursiveMerge(items) {
+      items.forEach((item) => {
+        if (item.type === 'folder') {
+          const target = item.items.find((prop) => prop.type === 'json');
+          if (target) {
+            config.push(target);
+          }
+          recursiveMerge(item.items);
+        }
+      });
+    })(items);
+
+    // rekursive Verarbeitung der settings
+    const processConfig = (items = []) => {
+      if (!Array.isArray(items)) {
+        console.error('processConfig: Expected an array, but got', items);
+        return [];
+      }
+
+      const settings = config.map(({ source }) => getSettings(source) || {});
+
+      if (settings.length > 0) {
+        settings.forEach((item) => {
+          Object.keys(item || {}).forEach((key) => {
+            items.forEach((folderItem) => {
+              if (folderItem?.type === 'folder' && folderItem?.folder?.toLowerCase() === key.toLowerCase()) {
+                folderItem.order = item[key]?.order || Number.MAX_SAFE_INTEGER;
+                folderItem.title = item[key]?.title || folderItem.title;
+              }
+              // Rekursive Anwendung für Unterordner
+              if (Array.isArray(folderItem.items) && folderItem.items.length > 0) {
+                processConfig(folderItem.items);
+              }
+            });
+          });
+        });
+      }
+      return items;
+    };
+    
+    return processConfig(items); // Hier items übergeben
+  };
+
+  const result = mergeConfig(items);
+  const sortedResult = result.sort((a, b) => (a.order || Number.MAX_SAFE_INTEGER) - (b.order || Number.MAX_SAFE_INTEGER));
   console.log(JSON.stringify(sortedResult, null, 3))
   return sortedResult
 }
 
 function getSettings (path)  {
-  if(path.includes('directory.json')) {
+  if(path.includes(`${settingsFileName}`)) {
     let data = fs.readFileSync(path, 'utf-8')
     return JSON.parse(data)
   }
-  return null
+  return undefined
 }
 
-function createClientPath (_path) {
-  return removeExtension(basePath + '/' + _path.replace(/^(\d+(\.\d+)?)-?/, '').replace(/\[([^\]]+)\]|\(([^\)]+)\)/, "$1"))?.toLowerCase()
+function createClientPath (path) {
+  return basePath + '/' + path.replace(process.cwd(), '').split('/').slice(2).join('/').replace(/\[([^\]]+)\]|\(([^\)]+)\)/, "$1").replace(/\/index\.mdx$/, '/').replace(/\.mdx/g, '').toLowerCase()
 }
 
 function cleanFileName (file) {
@@ -102,8 +158,4 @@ function isJSONFile (path) {
 
 function isMarkdownFile (path) {
   return path.includes('.mdx') || path.endsWith('.mdx') 
-}
-
-function removeExtension (path) {
-  return isMarkdownFile(path) ? path.replace(/\/index\.mdx$/, '/').replace(/\.mdx/g, '') : undefined
 }

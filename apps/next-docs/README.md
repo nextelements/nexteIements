@@ -142,7 +142,7 @@
 ]
 ```
 
-Edit the order by creating a `directory.json` in the main directory for example:
+Edit the order by creating a `directory.json` in the contents-root directory for example:
 ```json
 // contents/directory.json
 {

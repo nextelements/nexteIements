@@ -1,0 +1,10 @@
+{
+  "directory1": {
+    "order": 1,
+    "title": "Directory Z"
+  },
+  "directory2": {
+    "order": 2,
+    "title": "Directory A"
+  }
+}
