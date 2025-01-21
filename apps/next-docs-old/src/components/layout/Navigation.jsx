@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';

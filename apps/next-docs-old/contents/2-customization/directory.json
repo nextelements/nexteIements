@@ -1,0 +1,11 @@
+{
+  "colors": {
+    "order": 1
+  },
+  "theming": {
+    "order": 2
+  },
+  "advanced": {
+    "order": 3
+  }
+}

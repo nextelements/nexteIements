@@ -1,3 +1,3 @@
 export { Navigation } from './Navigation'
-export { StickySidebar } from './StickySidebar'
+export { StickyScrollSidebar } from './StickyScrollSidebar'
 export { TableContents } from './TableContents'

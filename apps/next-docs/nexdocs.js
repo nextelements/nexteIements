@@ -1,0 +1,3 @@
+const nexdocsConfig = {
+  version: ''
+}

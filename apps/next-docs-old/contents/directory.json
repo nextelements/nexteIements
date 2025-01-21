@@ -1,0 +1,11 @@
+{
+  "introduction": {
+    "order": 1
+  },
+  "customization": {
+    "order": 2
+  },
+  "hooks": {
+    "order": 3
+  }
+}
